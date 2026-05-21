@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌆 Evening Review — Thursday, May 21, 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 24px 16px 48px;
+    }
+    a { color: #3b82f6; text-decoration: none; }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .header-title { font-size: 22px; font-weight: 700; }
+    .header-sub { color: #94a3b8; font-size: 13px; margin-top: 2px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .badge-partial { background: #451a03; color: #f59e0b; }
+    .badge-failed  { background: #450a0a; color: #ef4444; }
+
+    .section { margin-top: 28px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid #334155;
+    }
+    .card-label { font-size: 11px; color: #94a3b8; margin-bottom: 6px; }
+    .card-value { font-size: 28px; font-weight: 800; }
+    .card-sub   { font-size: 11px; color: #64748b; margin-top: 4px; }
+    .c-blue   { color: #3b82f6; }
+    .c-green  { color: #22c55e; }
+    .c-yellow { color: #f59e0b; }
+    .c-red    { color: #ef4444; }
+    .c-purple { color: #a78bfa; }
+    .c-gray   { color: #475569; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #1e293b; }
+    th {
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+    td { padding: 10px 12px; border-bottom: 1px solid #1e293b; font-size: 13px; }
+    tr:last-child td { border-bottom: none; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pill-green  { background: #14532d44; color: #22c55e; }
+    .pill-red    { background: #450a0a44; color: #ef4444; }
+    .pill-yellow { background: #451a0344; color: #f59e0b; }
+    .pill-gray   { background: #1e293b; color: #64748b; }
+
+    .aplus-block {
+      background: #1a1040;
+      border: 1px solid #4c1d95;
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .aplus-title { font-size: 14px; font-weight: 700; color: #a78bfa; margin-bottom: 10px; }
+    .aplus-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .aplus-stat-label { font-size: 11px; color: #94a3b8; }
+    .aplus-stat-val   { font-size: 22px; font-weight: 800; color: #475569; }
+    .aplus-note { margin-top: 10px; font-size: 12px; color: #64748b; }
+
+    .gap-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #1e293b;
+      border-left: 3px solid #475569;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 8px;
+    }
+    .gap-customer { font-weight: 600; font-size: 14px; color: #64748b; }
+
+    .project-item {
+      display: flex;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #1e293b;
+    }
+    .project-item:last-child { border-bottom: none; }
+    .project-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #475569; flex-shrink: 0; margin-top: 6px;
+    }
+    .project-text  { font-size: 13px; color: #64748b; }
+
+    .tomorrow-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 8px 12px;
+      background: #1e293b;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .tomorrow-time { font-size: 12px; color: #94a3b8; min-width: 50px; margin-top: 2px; }
+    .tomorrow-name { font-weight: 600; font-size: 13px; color: #64748b; }
+    .tomorrow-loc  { font-size: 12px; color: #475569; }
+
+    .prompt-list { display: flex; flex-direction: column; gap: 8px; }
+    .prompt-item {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #38bdf8;
+      cursor: pointer;
+      user-select: all;
+    }
+    .prompt-item::before { content: '❯ '; color: #64748b; }
+
+    .error-block {
+      background: #1c0a0a;
+      border: 1px solid #7f1d1d;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .error-title { font-size: 13px; font-weight: 700; color: #ef4444; margin-bottom: 8px; }
+    .error-item  { font-size: 12px; color: #fca5a5; margin-bottom: 4px; padding-left: 18px; position: relative; }
+    .error-item::before { content: '✖'; position: absolute; left: 0; }
+
+    .info-block {
+      background: #0c1a2e;
+      border: 1px solid #1e3a5f;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .info-title { font-size: 13px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; }
+    .info-item  { font-size: 12px; color: #93c5fd; margin-bottom: 4px; padding-left: 18px; position: relative; }
+    .info-item::before { content: 'ℹ'; position: absolute; left: 0; }
+
+    .unavail {
+      color: #334155;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid #1e293b;
+      font-size: 11px;
+      color: #475569;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="header-title">🌆 Evening Review</div>
+      <div class="header-sub">Thursday, May 21, 2026 · NorCal CARB Mobile LLC · Generated 2026-05-21T06:31:00Z</div>
+    </div>
+    <span class="badge badge-partial">⚠ PARTIAL — MCP Unavailable</span>
+  </div>
+
+  <!-- Error block -->
+  <div class="error-block">
+    <div class="error-title">Live Data Unavailable — Required MCP Servers Not Connected</div>
+    <div class="error-item">Google Calendar MCP (mcp__ca3eea1c-d8b2-4907-ac4e-7b1df7bbd71d) — not found in this environment</div>
+    <div class="error-item">Gmail MCP (mcp__49a41da9-7b59-4502-954e-d66dc4c5e763) — not found in this environment</div>
+    <div class="error-item">Stripe MCP (mcp__361bd869-cfd2-4abf-ad58-bdca945227ab) — needs authentication</div>
+    <div class="error-item">Session Info MCP (mcp__session_info) — not found in this environment</div>
+    <div class="error-item">Google Drive MCP (mcp__a0669776-ad19-4500-9ef1-a94724bbbd96) — not found in this environment</div>
+    <div class="error-item">OneDrive output path (C:\Users\ai_he\OneDrive\...) — not accessible from Linux environment</div>
+  </div>
+
+  <!-- Info block -->
+  <div class="info-block">
+    <div class="info-title">Environment Context — Cursor Cloud Agent (Linux VM)</div>
+    <div class="info-item">This review ran inside a Cursor Cloud Agent, which is a code-development environment.</div>
+    <div class="info-item">The 7 PM review requires custom MCP servers configured in your Claude.ai Desktop session.</div>
+    <div class="info-item">To run with live data: open Claude.ai, ensure all 5 MCP servers are connected, paste the evening-review-7pm skill prompt.</div>
+    <div class="info-item">The script + templates in this repo are ready — see scripts/evening-review-7pm.sh and skills/evening-review-7pm.md.</div>
+  </div>
+
+  <!-- Job count cards — unavailable -->
+  <div class="section">
+    <div class="section-title">Today's Jobs</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Total Jobs</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">calendar unavailable</div>
+      </div>
+      <div class="card">
+        <div class="card-label">A+ (Danny)</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">calendar unavailable</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Direct</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">calendar unavailable</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Invoice Gaps</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">gmail unavailable</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jobs table — unavailable -->
+  <div class="section">
+    <div class="section-title">Job Detail</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Location</th>
+            <th>Test</th>
+            <th>Trucks</th>
+            <th>Invoice</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="6" class="unavail" style="text-align:center; padding: 24px;">
+              Google Calendar MCP not connected — no job data available
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Invoice / payment cards — unavailable -->
+  <div class="section">
+    <div class="section-title">Invoices & Payments</div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Invoices Sent</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">gmail unavailable</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Payments Received</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">stripe unavailable</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Stripe</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">needs auth</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Gap Estimate</div>
+        <div class="card-value c-gray">—</div>
+        <div class="card-sub unavail">sources unavailable</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoices sent — unavailable -->
+  <div class="section">
+    <div class="section-title">Invoices Sent Today</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Invoice / Subject</th>
+            <th>Recipient</th>
+            <th>Amount</th>
+            <th>Channel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4" class="unavail" style="text-align:center; padding: 24px;">
+              Gmail MCP not connected — no invoice data available
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- A+ Danny status — unavailable -->
+  <div class="section">
+    <div class="section-title">A+ Danny Status</div>
+    <div class="aplus-block">
+      <div class="aplus-title">⚡ A+ CTC — Danny (danny@aplusctc.com)</div>
+      <div class="aplus-row">
+        <div class="aplus-stat">
+          <div class="aplus-stat-label">Jobs Done</div>
+          <div class="aplus-stat-val">—</div>
+        </div>
+        <div class="aplus-stat">
+          <div class="aplus-stat-label">Invoiced to Danny</div>
+          <div class="aplus-stat-val">—</div>
+        </div>
+        <div class="aplus-stat">
+          <div class="aplus-stat-label">Danny Owes</div>
+          <div class="aplus-stat-val">—</div>
+        </div>
+      </div>
+      <div class="aplus-note">
+        A+ trigger customers: BJ Trucking · Bay City Metals · Dallinger · Granite Bay Bonnie ·
+        Box Pacific · Big Box Stockton · Overhead Door Stockton · any booking via admin@mobilecarbsmoketest.com
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoice gaps — unavailable -->
+  <div class="section">
+    <div class="section-title">Invoice Gaps — Send Before 9 PM Cron</div>
+    <div class="gap-item" style="border-left-color: #334155;">
+      <div>
+        <div class="gap-customer">No gap data — Calendar + Gmail MCPs required</div>
+        <div style="font-size:12px; color:#475569; margin-top:4px;">
+          Connect MCP servers in Claude.ai Desktop then re-run the evening review skill
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Open project items — unavailable -->
+  <div class="section">
+    <div class="section-title">Open Project Items (from Today's Chats)</div>
+    <div>
+      <div class="project-item">
+        <div class="project-dot"></div>
+        <div>
+          <div class="project-text">Session transcript MCP (mcp__session_info) not connected — no chat items extracted</div>
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-dot" style="background:#f59e0b;"></div>
+        <div>
+          <div class="project-text" style="color:#f59e0b; font-weight:600;">Reminder: this Cursor Cloud Agent run itself is an open item — 7 PM review infrastructure committed to repo, live MCP run still needed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tomorrow preview — unavailable -->
+  <div class="section">
+    <div class="section-title">Tomorrow's Preview (Friday, May 22, 2026)</div>
+    <div class="tomorrow-item">
+      <div class="tomorrow-time">—</div>
+      <div>
+        <div class="tomorrow-name unavail">Google Calendar MCP not connected — tomorrow's jobs unavailable</div>
+        <div class="tomorrow-loc">Connect calendar MCP and re-run</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prep prompts — always available -->
+  <div class="section">
+    <div class="section-title">Tomorrow's Prep Prompts — Paste Any into Claude</div>
+    <div class="prompt-list">
+      <div class="prompt-item">Generate Danny catch-up email for this week</div>
+      <div class="prompt-item">Run VIN compliance check on tomorrow's jobs</div>
+      <div class="prompt-item">Pull yesterday's Stripe invoices for reconciliation</div>
+      <div class="prompt-item">Run the 7 PM evening review with live data (requires Claude.ai + MCP servers)</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    NorCal CARB Mobile LLC · evening-project-review-7pm · 2026-05-21T06:31:00Z
+    · Status: PARTIAL (MCP servers not connected in Cursor Cloud environment)
+    · Companion: attention-hq-7am-digest | invoice-nightly-check
+  </div>
+
+</div>
+</body>
+</html>

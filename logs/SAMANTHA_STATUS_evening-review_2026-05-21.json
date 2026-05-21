@@ -1,0 +1,59 @@
+{
+  "agent": "evening-project-review-7pm",
+  "run_at": "2026-05-21T06:31:00Z",
+  "status": "PARTIAL",
+  "jobs_today": null,
+  "jobs_aplus": null,
+  "jobs_direct": null,
+  "invoices_sent_today": null,
+  "invoice_total_usd": null,
+  "payments_received_usd": null,
+  "invoice_gaps": null,
+  "invoice_gap_total_usd": null,
+  "danny_owed_usd": null,
+  "open_projects": [
+    "Cursor Cloud Agent run — 7 PM review infrastructure committed to repo; live MCP run still needed from Claude.ai Desktop",
+    "Connect Google Calendar MCP and re-run Steps 1+5 (today's jobs, tomorrow's preview)",
+    "Connect Gmail MCP and re-run Steps 2+10 (sent invoices, A+ draft creation)",
+    "Authenticate Stripe MCP and re-run Step 3 (payment intents, invoice list)",
+    "Connect Session Info MCP and re-run Step 4 (open project items from chat transcripts)",
+    "Connect Google Drive MCP and re-run Step 9 (write Samantha status to Drive folder)"
+  ],
+  "tomorrow_jobs": null,
+  "calendar_event_updated": false,
+  "infographic_path": "logs/evening-review-2026-05-21.html",
+  "infographic_onedrive_path": "C:\\Users\\ai_he\\OneDrive\\Documents\\Claude\\Outputs\\evening-review-2026-05-21.html",
+  "infographic_onedrive_written": false,
+  "drive_folder": "1BNfRFl3EH4cL61UEDBVCEyXgC6F1-oQO",
+  "drive_file_written": false,
+  "environment": "cursor-cloud-agent-linux",
+  "environment_note": "Cursor Cloud Agent (Linux VM) — designed for code tasks, not Claude.ai MCP environment. Re-run from Claude.ai Desktop with all 5 MCP servers connected.",
+  "errors": [
+    "Google Calendar MCP (mcp__ca3eea1c-d8b2-4907-ac4e-7b1df7bbd71d) not available — server not registered in Cursor Cloud environment",
+    "Gmail MCP (mcp__49a41da9-7b59-4502-954e-d66dc4c5e763) not available — server not registered in Cursor Cloud environment",
+    "Stripe MCP (mcp__361bd869-cfd2-4abf-ad58-bdca945227ab) not available — server requires authentication (needsAuth state)",
+    "Session Info MCP (mcp__session_info) not available — server not registered in Cursor Cloud environment",
+    "Google Drive MCP (mcp__a0669776-ad19-4500-9ef1-a94724bbbd96) not available — server not registered in Cursor Cloud environment",
+    "OneDrive output path C:\\Users\\ai_he\\OneDrive\\Documents\\Claude\\Outputs\\ not accessible — Windows path, Linux VM only",
+    "Calendar event '📋 7 PM Daily Project Review' NOT updated — Calendar MCP unavailable",
+    "STEP 10 A+ draft invoices NOT created — Gmail MCP unavailable"
+  ],
+  "steps_completed": [
+    "STEP 8 (partial) — HTML infographic written to logs/evening-review-2026-05-21.html with PARTIAL status",
+    "STEP 9 (partial) — Samantha JSON written to repo logs/ (Drive write skipped, Drive MCP unavailable)",
+    "Infrastructure — scripts/evening-review-7pm.sh committed",
+    "Infrastructure — templates/evening-review.html committed",
+    "Infrastructure — skills/evening-review-7pm.md committed"
+  ],
+  "steps_skipped": [
+    "STEP 1 — Today's jobs (Google Calendar MCP unavailable)",
+    "STEP 2 — Sent invoices (Gmail MCP unavailable)",
+    "STEP 3 — Stripe activity (Stripe MCP needs auth)",
+    "STEP 4 — Session transcripts (Session Info MCP unavailable)",
+    "STEP 5 — Tomorrow's preview (Google Calendar MCP unavailable)",
+    "STEP 6 — Review summary (depends on Steps 1-5)",
+    "STEP 7 — Calendar event update (Google Calendar MCP unavailable)",
+    "STEP 10 — A+ invoice drafts (Gmail MCP unavailable)"
+  ],
+  "recommended_action": "Open Claude.ai Desktop, verify all 5 MCP servers are connected (Calendar, Gmail, Stripe, SessionInfo, Drive), then paste the skill prompt from skills/evening-review-7pm.md to run the full live review."
+}
