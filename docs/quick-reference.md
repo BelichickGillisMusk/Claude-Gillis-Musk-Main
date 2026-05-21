@@ -15,6 +15,13 @@ Morning                     During the Day              End of Day
 3. Check calendar            Commit often                Clear inbox
 4. Set top 3 priorities      Update ticket status        Run daily-end.sh
 5. bash scripts/daily-start.sh  Open PR when done        Shut down cleanly
+
+Evening (~7 PM)
+──────────────────────────
+Agent: evening-project-review-7pm (runs from Cursor Desktop)
+Audits: jobs → invoices → Stripe → open items → tomorrow preview
+Outputs: calendar update, HTML infographic, Samantha JSON
+See: skills/evening-project-review-7pm.md
 ```
 
 ---
@@ -109,6 +116,9 @@ chore/<description>
 | `templates/weekly-summary.md` | Fill in weekly |
 | `templates/project-brief.md` | New project |
 | `templates/meeting-notes.md` | Each meeting |
+| `templates/evening-review.md` | 7 PM review summary format |
+| `templates/evening-review.html` | 7 PM review HTML infographic |
+| `templates/samantha-status-evening.json` | Samantha status schema |
 
 ---
 

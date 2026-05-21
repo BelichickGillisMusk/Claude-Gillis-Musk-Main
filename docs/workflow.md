@@ -130,6 +130,49 @@ cycles.
 
 ---
 
+## 4b. Evening Project Review (7 PM)
+
+**Goal:** Bridge field work and the 9 PM invoice-nightly-check cron. Audit
+completed jobs, invoices, payments, and open project items before the end of
+Bryan's working day.
+
+**Cadence:** Daily, ~7 PM (Bryan is off the road by ~6 PM, voice-texting by 7 PM).
+
+**Companion agents:**
+- `attention-hq-7am-digest` (morning)
+- `invoice-nightly-check` (9 PM cron)
+
+### Steps
+
+1. **Pull today's completed jobs** from both Google Calendars
+   (`bgillis99@gmail.com` and `bryan@norcalcarbmobile.com`).
+2. **Pull today's sent invoices** from Gmail (sent folder search for invoice
+   keywords, Danny-specific sends, and PayPal/Squarespace).
+3. **Pull Stripe activity** — invoices and payment intents created today.
+4. **Identify open project items** from today's Cursor chat sessions
+   (decisions pending, promises made, half-built work, unfollowed leads).
+5. **Pull tomorrow's calendar preview** (first 5 jobs).
+6. **Build the review summary** using the
+   [evening review template](../templates/evening-review.md).
+7. **Update today's 7 PM calendar event** description with the review output.
+8. **Write the HTML infographic** to OneDrive using the
+   [HTML template](../templates/evening-review.html).
+9. **Write the Samantha status JSON** to Google Drive using the
+   [JSON template](../templates/samantha-status-evening.json).
+10. **Draft any missing A+ invoices** to Danny — as Gmail drafts only, never
+    sent automatically.
+
+Full agent skill: [skills/evening-project-review-7pm.md](../skills/evening-project-review-7pm.md)
+
+### A+ Customer Rules
+
+Jobs belonging to these customers are routed through Danny at A+ CTC:
+BJ Trucking, Bay City Metals, Dallinger, Granite Bay Bonnie, Box Pacific,
+Big Box Stockton, Overhead Door Stockton (or any job booked by
+`admin@mobilecarbsmoketest.com`).
+
+---
+
 ## 5. Weekly Review Loop
 
 **Cadence:** Every Friday (or last workday of the week).

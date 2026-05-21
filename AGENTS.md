@@ -20,6 +20,18 @@ All scripts are already executable (`chmod +x`). Run from the repo root:
 | Weekly review | `bash scripts/weekly-review.sh` | **Creates commits and pushes** — writes to `logs/weekly/` |
 | New project | `bash scripts/new-project.sh "Name"` | Scaffolds under `projects/` (gitignored) |
 
+### Agent skills (MCP-based workflows)
+
+| Skill | Purpose | Required MCP servers |
+|-------|---------|----------------------|
+| `skills/cloud-agent-starter.md` | First-stop runbook for Cloud agents | None (Bash + Git only) |
+| `skills/evening-project-review-7pm.md` | 7 PM daily project review (NorCal CARB Mobile) | Google Calendar, Gmail, Stripe, Session Info, Google Drive |
+
+The evening review skill **cannot run in Cursor Cloud** — it requires MCP
+servers that are only available in Bryan's local Cursor Desktop. Cloud agents
+working on this repo should treat the skill as documentation/templates and
+not attempt to execute the MCP calls.
+
 ### Gotchas
 
 - `daily-end.sh` and `weekly-review.sh` both run `git add`, `git commit`, and `git push`. If you only want to test script execution without side effects, run on a throwaway branch or review generated files before they are committed.
