@@ -1,0 +1,29 @@
+{
+  "agent": "evening-project-review-7pm",
+  "run_at": "2026-05-21T06:31:25Z",
+  "status": "FAILED",
+  "jobs_today": null,
+  "jobs_aplus": null,
+  "jobs_direct": null,
+  "invoices_sent_today": null,
+  "invoice_total_usd": null,
+  "payments_received_usd": null,
+  "invoice_gaps": null,
+  "invoice_gap_total_usd": null,
+  "danny_owed_usd": null,
+  "open_projects": [],
+  "tomorrow_jobs": null,
+  "calendar_event_updated": false,
+  "infographic_path": "outputs/evening-review-2026-05-20.html",
+  "onedrive_target_path": "C:\\Users\\ai_he\\OneDrive\\Documents\\Claude\\Outputs\\evening-review-2026-05-20.html",
+  "drive_folder_id": "1BNfRFl3EH4cL61UEDBVCEyXgC6F1-oQO",
+  "drive_uploaded": false,
+  "errors": [
+    "MCP server ca3eea1c-d8b2-4907-ac4e-7b1df7bbd71d (Google Calendar) not available",
+    "MCP server 49a41da9-7b59-4502-954e-d66dc4c5e763 (Gmail) not available",
+    "MCP server 361bd869-cfd2-4abf-ad58-bdca945227ab (Stripe) not available",
+    "MCP server session_info not available",
+    "MCP server a0669776-ad19-4500-9ef1-a94724bbbd96 (Google Drive) not available",
+    "OneDrive path C:\\Users\\ai_he\\OneDrive\\Documents\\Claude\\Outputs not accessible from Linux Cloud Agent"
+  ]
+}
