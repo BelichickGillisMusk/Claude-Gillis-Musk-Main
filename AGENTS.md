@@ -2,7 +2,9 @@
 
 ## Cursor Cloud specific instructions
 
-This is a documentation + shell-scripts repository (no application services, no build system, no package manager). The "application" is four Bash scripts in `scripts/` plus Markdown docs/templates.
+This is **Gillis Main**: a documentation + shell-scripts repository for Bryan's operating manual, templates, workflow scripts, and Samantha app roadmap. There are no application services, no build system, and no package manager here. The executable surface is four Bash scripts in `scripts/` plus Markdown docs/templates.
+
+Production Samantha app code belongs in the separate Samantha app repository, not in this handbook repo.
 
 ### Prerequisites
 

@@ -1,12 +1,10 @@
-# Meeting Notes — {{DATE}} — {{MEETING_TITLE}}
+# Meeting Notes - {{DATE}} - {{MEETING_TITLE}}
 
 **Date:** {{DATE}}
-**Time:** 
-**Location / Link:** 
-**Facilitator:** 
+**Time:**
+**Location / Link:**
+**Facilitator:**
 **Note-taker:** Bryan
-
----
 
 ## Attendees
 
@@ -14,39 +12,33 @@
 |------|------|
 |      |      |
 
----
+## Purpose
 
-## Agenda
+Why are we meeting?
 
-1. 
-2. 
-3. 
+-
 
----
+## Notes
 
-## Discussion Notes
+-
 
-### Item 1 — 
-- 
+## Decisions
 
-### Item 2 — 
-- 
+- [ ]
 
----
+## Action items
 
-## Decisions Made
+| Action | Owner | Due |
+|--------|-------|-----|
+|        | Bryan |     |
 
-- [ ] 
+## Samantha follow-up
 
-## Action Items
-
-| Action | Owner | Due Date |
-|--------|-------|---------|
-|        | Bryan |          |
-
----
+- [ ] Add tasks to chalkboard.
+- [ ] Schedule calendar items.
+- [ ] Draft/send follow-up message after Bryan confirms.
 
 ## Next Meeting
 
-**Date:** 
-**Agenda draft:** 
+**Date:**
+**Agenda draft:**
