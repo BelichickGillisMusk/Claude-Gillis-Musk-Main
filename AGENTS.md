@@ -31,3 +31,20 @@ All scripts are already executable (`chmod +x`). Run from the repo root:
 There is no formal linter or test framework. To validate scripts:
 - Run `bash -n scripts/*.sh` to syntax-check all scripts without executing them.
 - Run each script individually to verify runtime behavior (see table above).
+
+---
+
+## Workspace (`/agent`) — other repos
+
+This cloud workspace contains **five independent git repos** under `/agent/repos/`. Install and run per repo:
+
+| Repo | Install | Dev server | Lint/check |
+|------|---------|------------|------------|
+| `AI-Studio-for-Silverback` | `npm install` (+ sub-apps) | `npm run dev` → `:3000` | `npm run lint` (see gotcha below) |
+| `deployment-handoff-site` | `corepack enable && pnpm install` | `pnpm exec vite --host --port 3001` | `pnpm run check` |
+| `demo-repository` | `npm install` (optional) | `python3 -m http.server 3002` | Python `html.parser` on `index.html` |
+| `Claude-code-chats-and-project-list` | None | `bash -n cloudflare-white-screen-fix/*.sh` | Same |
+
+**Port gotcha:** Start AI-Studio on `:3000` before `deployment-handoff-site`, or pin handoff with `pnpm exec vite --host --port 3001` (not `pnpm run dev -- --port 3001`).
+
+**AI-Studio lint gotcha:** Root `tsc --noEmit` may fail when sub-app `node_modules` exist; use `cd timesheets && npm run typecheck` per sub-app instead.
