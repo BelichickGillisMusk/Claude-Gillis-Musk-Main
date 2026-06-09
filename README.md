@@ -1,101 +1,86 @@
-# Bryan's Workflow & Operation Key Uses
+# Gillis Main Operating Manual
 
-A complete reference repository documenting Bryan's day-to-day workflow,
-operational procedures, and key command / tool usage.
+This repository is the home base for Bryan's operating system: daily routines,
+project notes, repeatable scripts, and the working plan for Samantha.
 
----
+It is intentionally simple. There is no app server, package manager, or build
+step in this repo. The repo is a clean handbook plus a few Bash scripts that
+help keep the day organized.
 
-## Table of Contents
+## What belongs here
 
-1. [Overview](#overview)
-2. [Quick Reference](#quick-reference)
-3. [Workflow Documentation](#workflow-documentation)
-4. [Key Operations](#key-operations)
-5. [Scripts](#scripts)
-6. [Templates](#templates)
-7. [Contributing](#contributing)
+- The daily and weekly workflow Bryan wants agents to follow.
+- Plain-English instructions that still make sense to a beginner.
+- Templates for logs, projects, and meetings.
+- Roadmaps for bigger projects that should live in their own repositories.
+- Small shell scripts that automate routine check-ins.
 
----
+## What does not belong here
 
-## Overview
+- The production Samantha app code.
+- Secrets, API keys, tokens, or credentials.
+- Large customer files, private uploads, or generated project folders.
+- Half-built experiments that need their own repo.
 
-This repository serves as the single source of truth for Bryan's operational
-knowledge base.  It captures:
+For Samantha app work, start with
+[`docs/samantha-app-roadmap.md`](docs/samantha-app-roadmap.md). The app itself
+should live in the separate `BelichickGillisMusk/samantha-agents-google`
+repository.
 
-- **Daily & weekly workflows** — step-by-step procedures for recurring tasks.
-- **Key operation uses** — canonical commands, tools, and patterns used in each
-  phase of work.
-- **Helper scripts** — automations that speed up repetitive operations.
-- **Templates** — reusable starting points for common deliverables.
+## Start here
 
----
+Run these from the repo root:
 
-## Quick Reference
+```bash
+bash scripts/daily-start.sh
+```
 
-| Task | Script / Command | Doc |
-|------|-----------------|-----|
-| Start daily session | `scripts/daily-start.sh` | [Workflow](docs/workflow.md) |
-| End-of-day wrap-up | `scripts/daily-end.sh` | [Workflow](docs/workflow.md) |
-| Weekly review | `scripts/weekly-review.sh` | [Workflow](docs/workflow.md) |
-| Key shortcuts | — | [Key Operations](docs/key-operations.md) |
-| Cheat sheet | — | [Quick Reference](docs/quick-reference.md) |
+Then open:
 
----
+1. [`docs/quick-reference.md`](docs/quick-reference.md) - the short cheat sheet.
+2. [`docs/workflow.md`](docs/workflow.md) - the full daily/weekly process.
+3. [`docs/samantha-app-roadmap.md`](docs/samantha-app-roadmap.md) - how to turn
+   Samantha into the car-friendly assistant app.
 
-## Workflow Documentation
+## Repository map
 
-See **[docs/workflow.md](docs/workflow.md)** for the full, annotated workflow
-covering:
+| Path | Purpose |
+|------|---------|
+| [`README.md`](README.md) | This orientation page |
+| [`Claude.md`](Claude.md) | Quick index for AI assistants and humans |
+| [`AGENTS.md`](AGENTS.md) | Cursor Cloud runbook and safety notes |
+| [`docs/workflow.md`](docs/workflow.md) | Daily, weekly, and project operating rhythm |
+| [`docs/quick-reference.md`](docs/quick-reference.md) | Fast prompts, checklists, and commands |
+| [`docs/key-operations.md`](docs/key-operations.md) | Copy/paste command reference |
+| [`docs/samantha-app-roadmap.md`](docs/samantha-app-roadmap.md) | Build plan for Samantha's app |
+| [`scripts/`](scripts/) | Bash helpers for startup, wrap-up, weekly review, and project scaffolds |
+| [`templates/`](templates/) | Markdown templates used by scripts and manual notes |
+| [`logs/`](logs/) | Local generated logs; contents are intentionally gitignored |
 
-- Morning startup routine
-- Project task management cycle
-- Communication cadences
-- End-of-day wrap-up
-- Weekly and monthly review loops
+## Script safety
 
----
+| Script | Safe to run anytime? | What it does |
+|--------|----------------------|--------------|
+| `bash scripts/daily-start.sh` | Yes | Read-only startup check |
+| `bash scripts/daily-end.sh` | Be careful | Creates a daily log, commits, and pushes |
+| `bash scripts/weekly-review.sh` | Be careful | Creates a weekly summary, commits, and pushes |
+| `bash scripts/new-project.sh "Name"` | Yes | Creates a local gitignored folder under `projects/` |
 
-## Key Operations
+## Naming note
 
-See **[docs/key-operations.md](docs/key-operations.md)** for a detailed
-reference of every key operation Bryan uses, organized by category:
+This repository currently lives at
+`BelichickGillisMusk/Claude-Gillis-Musk-Main`. In plain English, treat it as
+**Gillis Main**: the main operating manual for Bryan, Samantha, and agents.
 
-- File & directory management
-- Version control (Git) operations
-- Scripting & automation
-- Communication & scheduling tools
-- Monitoring & reporting
+## How to update this repo
 
----
-
-## Scripts
-
-| Script | Purpose |
-|--------|---------|
-| [`scripts/daily-start.sh`](scripts/daily-start.sh) | Runs morning startup checks |
-| [`scripts/daily-end.sh`](scripts/daily-end.sh) | Runs end-of-day wrap-up |
-| [`scripts/weekly-review.sh`](scripts/weekly-review.sh) | Generates weekly status summary |
-| [`scripts/new-project.sh`](scripts/new-project.sh) | Scaffolds a new project directory |
-
----
-
-## Templates
-
-| Template | Purpose |
-|----------|---------|
-| [`templates/daily-log.md`](templates/daily-log.md) | Daily activity log |
-| [`templates/weekly-summary.md`](templates/weekly-summary.md) | Weekly status report |
-| [`templates/project-brief.md`](templates/project-brief.md) | New project brief |
-| [`templates/meeting-notes.md`](templates/meeting-notes.md) | Meeting notes |
-
----
-
-## Contributing
-
-1. Fork this repository.
-2. Create a feature branch: `git checkout -b feature/your-update`.
-3. Commit your changes with a descriptive message.
-4. Open a pull request against `main`.
-
-All contributions should follow the existing document structure and naming
-conventions described in [docs/workflow.md](docs/workflow.md).
+1. Make the smallest clear change that improves the handbook.
+2. Run:
+   ```bash
+   bash -n scripts/*.sh
+   bash scripts/daily-start.sh
+   ```
+3. Commit with a direct message, for example:
+   ```bash
+   git commit -m "docs: clarify samantha operating manual"
+   ```

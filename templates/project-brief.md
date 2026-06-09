@@ -1,34 +1,28 @@
-# Project Brief — {{PROJECT_NAME}}
+# Project Brief - {{PROJECT_NAME}}
 
 **Date:** {{DATE}}
 **Status:** Draft
 **Owner:** Bryan
 
----
-
 ## Overview
 
-_Describe the project goal in 2–3 sentences._
-
----
+What are we building, and why does it matter?
 
 ## Objectives
 
-1. 
-2. 
-3. 
-
----
+1.
+2.
+3.
 
 ## Scope
 
 **In scope:**
-- 
+
+-
 
 **Out of scope:**
-- 
 
----
+-
 
 ## Stakeholders
 
@@ -36,32 +30,30 @@ _Describe the project goal in 2–3 sentences._
 |------|------|---------|
 |      |      |         |
 
----
+## Success criteria
 
-## Timeline
+- [ ]
+- [ ]
+- [ ]
 
-| Milestone | Target Date | Status |
-|-----------|-------------|--------|
-| Kickoff   |             | Planned |
-| MVP       |             | Planned |
-| Launch    |             | Planned |
+## Data and access needed
 
----
+List accounts, files, APIs, or credentials needed. Do not paste secrets here.
 
-## Success Criteria
+-
 
-- 
+## Risks and guardrails
 
----
+| Risk | Why it matters | Guardrail |
+|------|----------------|-----------|
+|      |                |           |
 
-## Dependencies & Risks
+## First useful version
 
-| Item | Type | Impact | Mitigation |
-|------|------|--------|-----------|
-|      | Risk |        |            |
+What is the smallest version that proves this project is worth continuing?
 
----
+-
 
 ## Notes
 
-- 
+-
