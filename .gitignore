@@ -16,6 +16,27 @@ logs/weekly/*.md
 # Projects scaffolded locally (each manages its own git)
 projects/
 
+# Secrets and credentials — prevent accidental commit via git add .
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.json
+serviceAccountKey*.json
+*-credentials.json
+*.token
+.aws/
+.gcp/
+.azure/
+.netrc
+.npmrc
+.pypirc
+
 # Temp
 /tmp/
 *.tmp
