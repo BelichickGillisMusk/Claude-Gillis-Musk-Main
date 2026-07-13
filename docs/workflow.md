@@ -130,28 +130,6 @@ For Cursor Cloud work, follow the branch naming requested by the cloud task.
 
 ---
 
-## 5. End-of-day wrap-up
-
-**Goal:** Leave tomorrow a clean starting point.
-
-1. Move unfinished work to tomorrow with a note.
-2. Fill out today's daily log:
-   - wins,
-   - customer follow-ups,
-   - blockers,
-   - tomorrow's carry-overs.
-3. If you intentionally want the script to commit and push, run:
-   ```bash
-   bash scripts/daily-end.sh
-   ```
-4. Check that any customer action with a date is on the calendar.
-5. Close unused tabs and apps.
-
-Important: `daily-end.sh` commits and pushes. Do not run it as a harmless test.
-
----
-
-<<<<<<< HEAD
 ## 4b. Evening Project Review (7 PM)
 
 **Goal:** Bridge field work and the 9 PM invoice-nightly-check cron. Audit
@@ -166,8 +144,7 @@ Bryan's working day.
 
 ### Steps
 
-1. **Pull today's completed jobs** from both Google Calendars
-   (`bgillis99@gmail.com` and `bryan@norcalcarbmobile.com`).
+1. **Pull today's completed jobs** from both Google Calendars.
 2. **Pull today's sent invoices** from Gmail (sent folder search for invoice
    keywords, Danny-specific sends, and PayPal/Squarespace).
 3. **Pull Stripe activity** — invoices and payment intents created today.
@@ -195,20 +172,31 @@ Big Box Stockton, Overhead Door Stockton (or any job booked by
 
 ---
 
-## 5. Weekly Review Loop
-=======
+## 5. End-of-day wrap-up
+
+**Goal:** Leave tomorrow a clean starting point.
+
+1. Move unfinished work to tomorrow with a note.
+2. Fill out today's daily log:
+   - wins,
+   - customer follow-ups,
+   - blockers,
+   - tomorrow's carry-overs.
+3. If you intentionally want the script to commit and push, run:
+   ```bash
+   bash scripts/daily-end.sh
+   ```
+4. Check that any customer action with a date is on the calendar.
+5. Close unused tabs and apps.
+
+Important: `daily-end.sh` commits and pushes. Do not run it as a harmless test.
+
+---
+
 ## 6. Weekly review
->>>>>>> origin/main
 
 **Goal:** Turn the week into a short, useful summary and a better next week.
 
-<<<<<<< HEAD
-### Steps
-
-1. **Review all open projects** — update status for each. Stripe/Store on site. Get boardroom app up and active it showa promise. 
-2. **Process the task backlog** — groom, estimate, and prioritize next week. Create a calendar for googel search conversation per URL so like 2 URLS at a time. Also is Social media started or Google business progile and images on the site and in blogs. Maybe we write a monthly bot about the best lunch or diner in an unexpected town i visit for SEO and real content 
-3. **Generate weekly summary**
-=======
 1. Review daily logs.
 2. Review open customer follow-ups.
 3. Check whether every completed test has its retest reminder.
@@ -218,7 +206,6 @@ Big Box Stockton, Overhead Door Stockton (or any job booked by
    - finish,
    - delete.
 5. Generate the weekly summary only when you are ready for it to commit:
->>>>>>> origin/main
    ```bash
    bash scripts/weekly-review.sh
    ```
@@ -251,16 +238,7 @@ The assistant should:
    git status -sb
    bash -n scripts/*.sh
    ```
-<<<<<<< HEAD
-2. **Fill in the project brief**: [templates/project-brief.md](../templates/project-brief.md). Make a list of all invoices coming in via email, ask bryan if he wants to cancel, pay or add to taks list for later day. Look into Make.com duplicate account, Remind Portville for Entrussed is due by end of July. F&F moved to later in week. Give Bryan list of all remaining July and Auguest retests so he can call and email since Camilla cant. Learn to SMS and it will make my day and we can use new boardroom
-4. **Set up repository** (if code project):
-   - Initialize git, add `.gitignore`, push to remote.
-   - Configure branch protections and CI.
-5. **Brief stakeholders** — share the project brief and agree on scope. Share availabilty during the day in case user needs a task done. 
-6. **Add project to task tracker** and create initial backlog.
-=======
 3. Avoid mutating scripts unless that is the assignment.
 4. If the request is really app work for Samantha, use
    `docs/samantha-app-roadmap.md` and the app repo instead of stuffing app code
    into this handbook.
->>>>>>> origin/main

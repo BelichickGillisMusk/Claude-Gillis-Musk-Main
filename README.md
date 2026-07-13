@@ -35,7 +35,6 @@ Run these from the repo root:
 bash scripts/daily-start.sh
 ```
 
-<<<<<<< HEAD
 | Task | Script / Command | Doc |
 |------|-----------------|-----|
 | Start daily session | `scripts/daily-start.sh` | [Workflow](docs/workflow.md) |
@@ -44,9 +43,8 @@ bash scripts/daily-start.sh
 | Weekly review | `scripts/weekly-review.sh` | [Workflow](docs/workflow.md) |
 | Key shortcuts | — | [Key Operations](docs/key-operations.md) |
 | Cheat sheet | — | [Quick Reference](docs/quick-reference.md) |
-=======
+
 Then open:
->>>>>>> origin/main
 
 1. [`docs/quick-reference.md`](docs/quick-reference.md) - the short cheat sheet.
 2. [`docs/workflow.md`](docs/workflow.md) - the full daily/weekly process.
@@ -68,16 +66,7 @@ Then open:
 | [`templates/`](templates/) | Markdown templates used by scripts and manual notes |
 | [`logs/`](logs/) | Local generated logs; contents are intentionally gitignored |
 
-<<<<<<< HEAD
-- Morning startup routine
-- Project task management cycle
-- Communication cadences
-- End-of-day wrap-up
-- **Evening project review (7 PM agent — NorCal CARB Mobile)**
-- Weekly and monthly review loops
-=======
 ## Script safety
->>>>>>> origin/main
 
 | Script | Safe to run anytime? | What it does |
 |--------|----------------------|--------------|
@@ -92,30 +81,12 @@ This repository currently lives at
 `BelichickGillisMusk/Claude-Gillis-Musk-Main`. In plain English, treat it as
 **Gillis Main**: the main operating manual for Bryan, Samantha, and agents.
 
-## How to update this repo
-
-<<<<<<< HEAD
----
-
-## Scripts
-
-| Script | Purpose |
-|--------|---------|
-| [`scripts/daily-start.sh`](scripts/daily-start.sh) | Runs morning startup checks |
-| [`scripts/daily-end.sh`](scripts/daily-end.sh) | Runs end-of-day wrap-up |
-| [`scripts/weekly-review.sh`](scripts/weekly-review.sh) | Generates weekly status summary |
-| [`scripts/new-project.sh`](scripts/new-project.sh) | Scaffolds a new project directory |
-
----
-
 ## Skills (Agent Runbooks)
 
 | Skill | Purpose |
 |-------|---------|
 | [`skills/cloud-agent-starter.md`](skills/cloud-agent-starter.md) | First-stop runbook for Cloud agents |
 | [`skills/evening-project-review-7pm.md`](skills/evening-project-review-7pm.md) | 7 PM daily project review for NorCal CARB Mobile |
-
----
 
 ## Templates
 
@@ -129,18 +100,8 @@ This repository currently lives at
 | [`templates/evening-review.html`](templates/evening-review.html) | Evening review HTML infographic |
 | [`templates/samantha-status-evening.json`](templates/samantha-status-evening.json) | Samantha status JSON schema |
 
----
+## How to update this repo
 
-## Contributing
-
-1. Fork this repository.
-2. Create a feature branch: `git checkout -b feature/your-update`.
-3. Commit your changes with a descriptive message.
-4. Open a pull request against `main`.
-
-All contributions should follow the existing document structure and naming
-conventions described in [docs/workflow.md](docs/workflow.md).
-=======
 1. Make the smallest clear change that improves the handbook.
 2. Run:
    ```bash
@@ -151,4 +112,3 @@ conventions described in [docs/workflow.md](docs/workflow.md).
    ```bash
    git commit -m "docs: clarify samantha operating manual"
    ```
->>>>>>> origin/main

@@ -15,7 +15,6 @@ Fast commands and prompts for Gillis Main. Full details live in
 | End of day | Fill daily log and carry unfinished items forward |
 | Friday | Review projects, reminders, invoices, and next week's Top 3 |
 
-<<<<<<< HEAD
 ```
 Morning                     During the Day              End of Day
 ──────────────────────────  ──────────────────────────  ──────────────────────────
@@ -32,9 +31,8 @@ Audits: jobs → invoices → Stripe → open items → tomorrow preview
 Outputs: calendar update, HTML infographic, Samantha JSON
 See: skills/evening-project-review-7pm.md
 ```
-=======
+
 ## Say this to Samantha
->>>>>>> origin/main
 
 | Need | Voice prompt |
 |------|--------------|
@@ -87,42 +85,6 @@ Commit types:
 - `feat:` new ability
 - `chore:` maintenance
 
-## Weekly checklist
-
-<<<<<<< HEAD
-| Type | Use for |
-|------|--------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Docs only |
-| `chore` | Tooling / deps |
-| `refactor` | Code restructure |
-| `test` | Tests |
-
----
-
-## Branch Naming
-
-```
-feature/<ticket-id>-short-description
-fix/<ticket-id>-short-description
-docs/<description>
-chore/<description>
-```
-
----
-
-## Scripts Reference
-
-| Script | Run with | What it does |
-|--------|----------|-------------|
-| `scripts/daily-start.sh` | `bash scripts/daily-start.sh` | Morning checks |
-| `scripts/daily-end.sh` | `bash scripts/daily-end.sh` | EOD wrap-up |
-| `scripts/weekly-review.sh` | `bash scripts/weekly-review.sh` | Weekly summary |
-| `scripts/new-project.sh` | `bash scripts/new-project.sh "Name"` | Scaffold project |
-
----
-
 ## Templates Reference
 
 | Template | Purpose |
@@ -135,20 +97,11 @@ chore/<description>
 | `templates/evening-review.html` | 7 PM review HTML infographic |
 | `templates/samantha-status-evening.json` | Samantha status schema |
 
----
+## Weekly checklist
 
-## Weekly Review Checklist
-
-- [ ] All open projects reviewed & status updated
-- [ ] Backlog groomed and next week prioritized
-- [ ] `bash scripts/weekly-review.sh` run
-- [ ] Weekly summary sent to stakeholders
-- [ ] Monday top-3 priorities set
-=======
 - [ ] Review customer follow-ups.
 - [ ] Confirm every completed test has a 17-week reminder.
 - [ ] Review unpaid or unfinished invoices.
 - [ ] Review active repos and projects.
 - [ ] Pick next week's Top 3 outcomes.
 - [ ] Update this handbook if the real workflow changed.
->>>>>>> origin/main
