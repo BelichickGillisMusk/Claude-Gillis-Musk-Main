@@ -29,12 +29,16 @@ projects/
 credentials.json
 serviceAccountKey*.json
 **/service-account*.json
+*-credentials.json
 *.secret
 secret.*
 .aws/
 .gcp/
 .azure/
 *.token
+.netrc
+.npmrc
+.pypirc
 
 # Temp
 /tmp/
