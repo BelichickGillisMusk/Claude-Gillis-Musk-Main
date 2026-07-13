@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evening Review — May 20, 2026 | NorCal CARB Mobile</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 1.25rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header { margin-bottom: 1.5rem; }
+    h1 { font-size: 1.5rem; font-weight: 700; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
+    .badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+    .card h3 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .card .val { font-size: 1.75rem; font-weight: 700; margin-top: 0.25rem; color: var(--accent); }
+    .card .val.na { color: var(--muted); font-size: 1.25rem; }
+    section { margin-bottom: 1.25rem; }
+    section h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+    ul { list-style: none; }
+    li {
+      padding: 0.6rem 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    li.gap { border-left: 3px solid var(--warning); }
+    li.err { border-left: 3px solid var(--error); }
+    .btn {
+      display: inline-block;
+      margin-top: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      font-size: 0.75rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .aplus { border-left: 3px solid var(--success); }
+    .prompt { border-left: 3px solid var(--accent); cursor: default; }
+    footer { margin-top: 2rem; font-size: 0.75rem; color: var(--muted); }
+    code { font-size: 0.8em; background: #0b1220; padding: 0.1em 0.35em; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌆 Evening Project Review</h1>
+    <p class="sub">NorCal CARB Mobile LLC · Wednesday, May 20, 2026 · Bryan Gillis</p>
+    <span class="badge">FAILED — MCP integrations unavailable</span>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Jobs today</h3>
+      <div class="val na">—</div>
+    </div>
+    <div class="card">
+      <h3>A+ jobs</h3>
+      <div class="val na">—</div>
+    </div>
+    <div class="card">
+      <h3>Direct jobs</h3>
+      <div class="val na">—</div>
+    </div>
+    <div class="card">
+      <h3>Invoices sent</h3>
+      <div class="val na">—</div>
+    </div>
+    <div class="card">
+      <h3>Payments in</h3>
+      <div class="val na">$—</div>
+    </div>
+    <div class="card">
+      <h3>Invoice gaps</h3>
+      <div class="val na">—</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Jobs &amp; invoicing</h2>
+    <ul>
+      <li class="err">Calendar + Gmail MCP not connected — job list and invoice matching could not run.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>A+ Danny status</h2>
+    <ul>
+      <li class="aplus">BJ Trucking, Bay City Metals, Dallinger, Granite Bay Bonnie, Box Pacific, Big Box Stockton, Overhead Door Stockton — flag logic ready; no data pulled.</li>
+      <li class="gap">Draft invoices to <code>danny@aplusctc.com</code> not created (Gmail MCP unavailable).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Invoice gaps</h2>
+    <ul>
+      <li class="gap">Re-run from desktop Cursor with Gmail + Calendar auth before 9 PM invoice-nightly-check.</li>
+      <a class="btn" href="#">Ask Claude: match today's jobs to sent mail</a>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tomorrow preview</h2>
+    <ul>
+      <li>First 5 jobs unavailable — calendar MCP required.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Prep prompts</h2>
+    <ul>
+      <li class="prompt">1. Generate Danny catch-up email for this week</li>
+      <li class="prompt">2. Run VIN compliance check on tomorrow's jobs</li>
+      <li class="prompt">3. Pull yesterday's Stripe invoices for reconciliation</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Integration errors</h2>
+    <ul>
+      <li class="err">Google Calendar <code>ca3eea1c…</code></li>
+      <li class="err">Gmail <code>49a41da9…</code></li>
+      <li class="err">Stripe <code>361bd869…</code></li>
+      <li class="err">session_info</li>
+      <li class="err">Google Drive <code>a0669776…</code> → folder 1BNfRFl3EH4cL61UEDBVCEyXgC6F1-oQO</li>
+    </ul>
+  </section>
+
+  <footer>
+    Agent: evening-project-review-7pm · Run: 2026-05-21T06:31:25Z · Copy to OneDrive Outputs after successful desktop run.
+  </footer>
+</body>
+</html>
