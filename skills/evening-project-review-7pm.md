@@ -148,7 +148,7 @@ review with a timestamp header:
 ### Step 8 — Write HTML infographic
 
 Write to:
-`C:\Users\ai_he\OneDrive\Documents\Claude\Outputs\evening-review-YYYY-MM-DD.html`
+`C:\Users\<USERNAME>\OneDrive\Documents\Claude\Outputs\evening-review-YYYY-MM-DD.html`
 
 Use the template in `templates/evening-review.html`. Match the visual style
 of `attention-hq-7am-digest`:
