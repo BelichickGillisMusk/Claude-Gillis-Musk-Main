@@ -179,8 +179,8 @@ Big Box Stockton, Overhead Door Stockton (or any job booked by
 
 ### Steps
 
-1. **Review all open projects** — update status for each.
-2. **Process the task backlog** — groom, estimate, and prioritize next week.
+1. **Review all open projects** — update status for each. Stripe/Store on site. Get boardroom app up and active it showa promise. 
+2. **Process the task backlog** — groom, estimate, and prioritize next week. Create a calendar for googel search conversation per URL so like 2 URLS at a time. Also is Social media started or Google business progile and images on the site and in blogs. Maybe we write a monthly bot about the best lunch or diner in an unexpected town i visit for SEO and real content 
 3. **Generate weekly summary**
    ```bash
    bash scripts/weekly-review.sh
@@ -213,9 +213,9 @@ Big Box Stockton, Overhead Door Stockton (or any job booked by
    ```bash
    bash scripts/new-project.sh "<Project Name>"
    ```
-2. **Fill in the project brief**: [templates/project-brief.md](../templates/project-brief.md).
-3. **Set up repository** (if code project):
+2. **Fill in the project brief**: [templates/project-brief.md](../templates/project-brief.md). Make a list of all invoices coming in via email, ask bryan if he wants to cancel, pay or add to taks list for later day. Look into Make.com duplicate account, Remind Portville for Entrussed is due by end of July. F&F moved to later in week. Give Bryan list of all remaining July and Auguest retests so he can call and email since Camilla cant. Learn to SMS and it will make my day and we can use new boardroom
+4. **Set up repository** (if code project):
    - Initialize git, add `.gitignore`, push to remote.
    - Configure branch protections and CI.
-4. **Brief stakeholders** — share the project brief and agree on scope.
-5. **Add project to task tracker** and create initial backlog.
+5. **Brief stakeholders** — share the project brief and agree on scope. Share availabilty during the day in case user needs a task done. 
+6. **Add project to task tracker** and create initial backlog.
