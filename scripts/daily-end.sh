@@ -44,23 +44,27 @@ LOG_FILE="${LOG_DIR}/${TODAY}.md"
 mkdir -p "$LOG_DIR"
 
 if [ ! -f "$LOG_FILE" ]; then
-  cp templates/daily-log.md "$LOG_FILE" 2>/dev/null || cat > "$LOG_FILE" <<LOGEOF
-# Daily Log — ${TODAY}
+  if [ -f templates/daily-log.md ]; then
+    sed "s/{{DATE}}/${TODAY}/g" templates/daily-log.md > "$LOG_FILE"
+  else
+    cat > "$LOG_FILE" <<LOGEOF
+# Daily Log - ${TODAY}
 
-## Top 3 Priorities
-- [ ] 
-- [ ] 
-- [ ] 
+## Top 3
+- [ ] Customer / business:
+- [ ] Follow-up / admin:
+- [ ] Build / improvement:
 
 ## Accomplishments
-- 
+-
 
-## Blockers / Notes
-- 
+## Blockers and loose ends
+-
 
-## Tomorrow's Carry-Overs
-- [ ] 
+## Tomorrow's carry-overs
+- [ ]
 LOGEOF
+  fi
   ok "Created ${LOG_FILE}"
 else
   ok "Log already exists: ${LOG_FILE}"

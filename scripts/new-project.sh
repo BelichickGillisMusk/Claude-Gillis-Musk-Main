@@ -52,38 +52,51 @@ if [ -f "$BRIEF_SRC" ]; then
       "$BRIEF_SRC" > "$BRIEF_DEST"
 else
   cat > "$BRIEF_DEST" <<BRIEF
-# Project Brief — ${PROJECT_NAME}
+# Project Brief - ${PROJECT_NAME}
 
 **Date:** ${TODAY}
 **Status:** Draft
+**Owner:** Bryan
 
 ## Overview
-_Describe the project goal in 2–3 sentences._
+What are we building, and why does it matter?
 
 ## Objectives
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
 ## Scope
 - **In scope:**
 - **Out of scope:**
 
 ## Stakeholders
-| Name | Role |
-|------|------|
-|      |      |
+| Name | Role | Contact |
+|------|------|---------|
+|      |      |         |
 
-## Timeline
-| Milestone | Target Date |
-|-----------|-------------|
-|           |             |
+## Success criteria
+- [ ]
+- [ ]
+- [ ]
 
-## Success Criteria
-- 
+## Data and access needed
+List accounts, files, APIs, or credentials needed. Do not paste secrets here.
+
+-
+
+## Risks and guardrails
+| Risk | Why it matters | Guardrail |
+|------|----------------|-----------|
+|      |                |           |
+
+## First useful version
+What is the smallest version that proves this project is worth continuing?
+
+-
 
 ## Notes
-- 
+-
 BRIEF
 fi
 ok "Created project brief at ${BRIEF_DEST}"
