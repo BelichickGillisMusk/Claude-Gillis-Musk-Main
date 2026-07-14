@@ -37,6 +37,12 @@ serviceAccountKey*.json
 .npmrc
 .pypirc
 
+# Outputs (may contain PII, cloud resource IDs, or operational data)
+outputs/*.json
+outputs/*.html
+outputs/*.md
+!outputs/README.md
+
 # Temp
 /tmp/
 *.tmp
