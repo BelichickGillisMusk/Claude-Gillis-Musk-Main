@@ -35,6 +35,15 @@ Run these from the repo root:
 bash scripts/daily-start.sh
 ```
 
+| Task | Script / Command | Doc |
+|------|-----------------|-----|
+| Start daily session | `scripts/daily-start.sh` | [Workflow](docs/workflow.md) |
+| End-of-day wrap-up | `scripts/daily-end.sh` | [Workflow](docs/workflow.md) |
+| **7 PM evening review** | **Agent skill (MCP)** | [Skill](skills/evening-project-review-7pm.md) |
+| Weekly review | `scripts/weekly-review.sh` | [Workflow](docs/workflow.md) |
+| Key shortcuts | — | [Key Operations](docs/key-operations.md) |
+| Cheat sheet | — | [Quick Reference](docs/quick-reference.md) |
+
 Then open:
 
 1. [`docs/quick-reference.md`](docs/quick-reference.md) - the short cheat sheet.
@@ -71,6 +80,25 @@ Then open:
 This repository currently lives at
 `BelichickGillisMusk/Claude-Gillis-Musk-Main`. In plain English, treat it as
 **Gillis Main**: the main operating manual for Bryan, Samantha, and agents.
+
+## Skills (Agent Runbooks)
+
+| Skill | Purpose |
+|-------|---------|
+| [`skills/cloud-agent-starter.md`](skills/cloud-agent-starter.md) | First-stop runbook for Cloud agents |
+| [`skills/evening-project-review-7pm.md`](skills/evening-project-review-7pm.md) | 7 PM daily project review for NorCal CARB Mobile |
+
+## Templates
+
+| Template | Purpose |
+|----------|---------|
+| [`templates/daily-log.md`](templates/daily-log.md) | Daily activity log |
+| [`templates/weekly-summary.md`](templates/weekly-summary.md) | Weekly status report |
+| [`templates/project-brief.md`](templates/project-brief.md) | New project brief |
+| [`templates/meeting-notes.md`](templates/meeting-notes.md) | Meeting notes |
+| [`templates/evening-review.md`](templates/evening-review.md) | 7 PM evening review summary |
+| [`templates/evening-review.html`](templates/evening-review.html) | Evening review HTML infographic |
+| [`templates/samantha-status-evening.json`](templates/samantha-status-evening.json) | Samantha status JSON schema |
 
 ## How to update this repo
 
