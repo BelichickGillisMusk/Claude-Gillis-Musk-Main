@@ -28,11 +28,14 @@ projects/
 *.keystore
 credentials.json
 serviceAccountKey*.json
+**/service-account*.json
 *-credentials.json
-*.token
+*.secret
+secret.*
 .aws/
 .gcp/
 .azure/
+*.token
 .netrc
 .npmrc
 .pypirc
