@@ -1,0 +1,19 @@
+{
+  "agent": "evening-project-review-7pm",
+  "run_at": "{{ISO_TIMESTAMP}}",
+  "status": "{{PASS|PARTIAL|FAILED}}",
+  "jobs_today": 0,
+  "jobs_aplus": 0,
+  "jobs_direct": 0,
+  "invoices_sent_today": 0,
+  "invoice_total_usd": 0,
+  "payments_received_usd": 0,
+  "invoice_gaps": 0,
+  "invoice_gap_total_usd": 0,
+  "danny_owed_usd": 0,
+  "open_projects": [],
+  "tomorrow_jobs": 0,
+  "calendar_event_updated": false,
+  "infographic_path": "C:\\Users\\<USERNAME>\\OneDrive\\Documents\\Claude\\Outputs\\evening-review-{{DATE}}.html",
+  "errors": []
+}

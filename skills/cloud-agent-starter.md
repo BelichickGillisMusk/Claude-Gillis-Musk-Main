@@ -1,6 +1,7 @@
 # Cloud Agent Starter Skill (Minimal)
 
-Use this skill as the first-stop runbook when a Cloud agent starts work in this repository.
+Use this skill as the first-stop runbook when a Cloud agent starts work in
+Gillis Main, Bryan's operating manual and Samantha roadmap repository.
 
 ## 1) Immediate setup checklist (first 60 seconds)
 
@@ -17,7 +18,8 @@ Use this skill as the first-stop runbook when a Cloud agent starts work in this 
    - `bash -n scripts/*.sh`
 
 Notes for this codebase:
-- There is no web app or server to start.
+- There is no web app or server to start in this repository.
+- Samantha app code belongs in the separate Samantha app repository.
 - There are no feature flags to set or mock.
 - Runtime requirements are Bash + Git + standard POSIX tools only.
 

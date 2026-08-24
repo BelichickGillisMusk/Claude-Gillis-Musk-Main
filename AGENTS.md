@@ -2,7 +2,9 @@
 
 ## Cursor Cloud specific instructions
 
-This is a documentation + shell-scripts repository (no application services, no build system, no package manager). The "application" is four Bash scripts in `scripts/` plus Markdown docs/templates.
+This is **Gillis Main**: a documentation + shell-scripts repository for Bryan's operating manual, templates, workflow scripts, and Samantha app roadmap. There are no application services, no build system, and no package manager here. The executable surface is four Bash scripts in `scripts/` plus Markdown docs/templates.
+
+Production Samantha app code belongs in the separate Samantha app repository, not in this handbook repo.
 
 ### Prerequisites
 
@@ -20,6 +22,18 @@ All scripts are already executable (`chmod +x`). Run from the repo root:
 | Weekly review | `bash scripts/weekly-review.sh` | **Creates commits and pushes** — writes to `logs/weekly/` |
 | New project | `bash scripts/new-project.sh "Name"` | Scaffolds under `projects/` (gitignored) |
 
+### Agent skills (MCP-based workflows)
+
+| Skill | Purpose | Required MCP servers |
+|-------|---------|----------------------|
+| `skills/cloud-agent-starter.md` | First-stop runbook for Cloud agents | None (Bash + Git only) |
+| `skills/evening-project-review-7pm.md` | 7 PM daily project review (NorCal CARB Mobile) | Google Calendar, Gmail, Stripe, Session Info, Google Drive |
+
+The evening review skill **cannot run in Cursor Cloud** — it requires MCP
+servers that are only available in Bryan's local Cursor Desktop. Cloud agents
+working on this repo should treat the skill as documentation/templates and
+not attempt to execute the MCP calls.
+
 ### Gotchas
 
 - `daily-end.sh` and `weekly-review.sh` both run `git add`, `git commit`, and `git push`. If you only want to test script execution without side effects, run on a throwaway branch or review generated files before they are committed.
@@ -31,3 +45,20 @@ All scripts are already executable (`chmod +x`). Run from the repo root:
 There is no formal linter or test framework. To validate scripts:
 - Run `bash -n scripts/*.sh` to syntax-check all scripts without executing them.
 - Run each script individually to verify runtime behavior (see table above).
+
+---
+
+## Workspace (`/agent`) — other repos
+
+This cloud workspace contains **five independent git repos** under `/agent/repos/`. Install and run per repo:
+
+| Repo | Install | Dev server | Lint/check |
+|------|---------|------------|------------|
+| `AI-Studio-for-Silverback` | `npm install` (+ sub-apps) | `npm run dev` → `:3000` | `npm run lint` (see gotcha below) |
+| `deployment-handoff-site` | `corepack enable && pnpm install` | `pnpm exec vite --host --port 3001` | `pnpm run check` |
+| `demo-repository` | `npm install` (optional) | `python3 -m http.server 3002` | Python `html.parser` on `index.html` |
+| `Claude-code-chats-and-project-list` | None | `bash -n cloudflare-white-screen-fix/*.sh` | Same |
+
+**Port gotcha:** Start AI-Studio on `:3000` before `deployment-handoff-site`, or pin handoff with `pnpm exec vite --host --port 3001` (not `pnpm run dev -- --port 3001`).
+
+**AI-Studio lint gotcha:** Root `tsc --noEmit` may fail when sub-app `node_modules` exist; use `cd timesheets && npm run typecheck` per sub-app instead.

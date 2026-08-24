@@ -1,11 +1,19 @@
-# Quick Reference — Bryan's Workflow Cheat Sheet
+# Quick Reference
 
-> One-page cheat sheet.  Full details → [workflow.md](workflow.md) and
-> [key-operations.md](key-operations.md).
+Fast commands and prompts for Gillis Main. Full details live in
+[`workflow.md`](workflow.md), [`key-operations.md`](key-operations.md), and
+[`samantha-app-roadmap.md`](samantha-app-roadmap.md).
 
----
+## Daily flow
 
-## Daily Routine at a Glance
+| Moment | Do this |
+|--------|---------|
+| Morning | `bash scripts/daily-start.sh` |
+| Before work | Pick the Top 3 priorities |
+| During day | Capture tasks immediately; organize later |
+| Customer passed | Schedule the 17-week retest reminder |
+| End of day | Fill daily log and carry unfinished items forward |
+| Friday | Review projects, reminders, invoices, and next week's Top 3 |
 
 ```
 Morning                     During the Day              End of Day
@@ -15,91 +23,67 @@ Morning                     During the Day              End of Day
 3. Check calendar            Commit often                Clear inbox
 4. Set top 3 priorities      Update ticket status        Run daily-end.sh
 5. bash scripts/daily-start.sh  Open PR when done        Shut down cleanly
+
+Evening (~7 PM)
+──────────────────────────
+Agent: evening-project-review-7pm (runs from Cursor Desktop)
+Audits: jobs → invoices → Stripe → open items → tomorrow preview
+Outputs: calendar update, HTML infographic, Samantha JSON
+See: skills/evening-project-review-7pm.md
 ```
 
----
+## Say this to Samantha
 
-## Git — Most Used Commands
+| Need | Voice prompt |
+|------|--------------|
+| Add a task | "Add to the chalkboard: ..." |
+| Schedule work | "Schedule a test for [customer] on [day/time]." |
+| Retest | "Customer passed. Set the 17-week reminder." |
+| Email | "Draft a reply saying ..." |
+| Invoice | "Create an invoice for ..." |
+| Lookup | "Find the DOT number for ..." |
+| Navigation | "Get directions to ..." |
+
+If Samantha is unsure, she should give 2-4 tap choices instead of a long
+question.
+
+## Repo commands
 
 ```bash
-# Start work
-git checkout -b feature/<id>-description
+# See current state
+git status -sb
 
-# During work
-git add -p                            # stage interactively
-git commit -m "type(scope): message"  # commit with convention
-git diff --staged                     # review staged diff
+# Validate scripts
+bash -n scripts/*.sh
 
-# Stay current
-git pull --rebase                     # rebase on remote changes
-
-# End of task
-git push -u origin <branch>           # push & set upstream
-gh pr create                          # open pull request
-
-# Utilities
-git log --oneline --graph --decorate  # visual log
-git stash push -m "desc"              # stash changes
-git stash pop                         # restore stash
+# Safe runtime check
+bash scripts/daily-start.sh
 ```
 
----
+## Scripts
 
-## File & System — Most Used Commands
+| Script | Command | Warning |
+|--------|---------|---------|
+| Daily start | `bash scripts/daily-start.sh` | Safe/read-only |
+| Daily end | `bash scripts/daily-end.sh` | Commits and pushes |
+| Weekly review | `bash scripts/weekly-review.sh` | Commits and pushes |
+| New project | `bash scripts/new-project.sh "Name"` | Writes under gitignored `projects/` |
+
+## Git basics
 
 ```bash
-ls -lah                   # list with sizes & hidden files
-find . -name "*.log"      # find files by name
-grep -r "pattern" .       # search file contents recursively
-du -sh *                  # disk usage per item
-df -h                     # free disk space
-tar -czf out.tar.gz dir/  # compress directory
-rsync -avz src/ dest/     # sync directories
-tail -f logfile.log       # follow live log
-ps aux | grep <name>      # find process
-kill <PID>                # terminate process
+git checkout -b docs/clear-name
+git add -p
+git commit -m "docs: clear description"
+git push -u origin docs/clear-name
 ```
 
----
+Commit types:
 
-## Commit Message Convention
-
-```
-<type>(<scope>): <short summary>
-```
-
-| Type | Use for |
-|------|--------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Docs only |
-| `chore` | Tooling / deps |
-| `refactor` | Code restructure |
-| `test` | Tests |
-
----
-
-## Branch Naming
-
-```
-feature/<ticket-id>-short-description
-fix/<ticket-id>-short-description
-docs/<description>
-chore/<description>
-```
-
----
-
-## Scripts Reference
-
-| Script | Run with | What it does |
-|--------|----------|-------------|
-| `scripts/daily-start.sh` | `bash scripts/daily-start.sh` | Morning checks |
-| `scripts/daily-end.sh` | `bash scripts/daily-end.sh` | EOD wrap-up |
-| `scripts/weekly-review.sh` | `bash scripts/weekly-review.sh` | Weekly summary |
-| `scripts/new-project.sh` | `bash scripts/new-project.sh "Name"` | Scaffold project |
-
----
+- `docs:` documentation
+- `fix:` broken behavior
+- `feat:` new ability
+- `chore:` maintenance
 
 ## Templates Reference
 
@@ -109,13 +93,15 @@ chore/<description>
 | `templates/weekly-summary.md` | Fill in weekly |
 | `templates/project-brief.md` | New project |
 | `templates/meeting-notes.md` | Each meeting |
+| `templates/evening-review.md` | 7 PM review summary format |
+| `templates/evening-review.html` | 7 PM review HTML infographic |
+| `templates/samantha-status-evening.json` | Samantha status schema |
 
----
+## Weekly checklist
 
-## Weekly Review Checklist
-
-- [ ] All open projects reviewed & status updated
-- [ ] Backlog groomed and next week prioritized
-- [ ] `bash scripts/weekly-review.sh` run
-- [ ] Weekly summary sent to stakeholders
-- [ ] Monday top-3 priorities set
+- [ ] Review customer follow-ups.
+- [ ] Confirm every completed test has a 17-week reminder.
+- [ ] Review unpaid or unfinished invoices.
+- [ ] Review active repos and projects.
+- [ ] Pick next week's Top 3 outcomes.
+- [ ] Update this handbook if the real workflow changed.

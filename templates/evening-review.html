@@ -1,405 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌆 Evening Review — {{DATE}}</title>
-  <style>
-    /* ── Base ──────────────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #0f172a;
-      color: #e2e8f0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
-      padding: 24px 16px 48px;
-    }
-    a { color: #3b82f6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evening Review — {{DATE}}</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-raised: #334155;
+    --accent: #3b82f6;
+    --accent-dim: #1d4ed8;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #475569;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-    /* ── Layout ────────────────────────────────────────────────────────────── */
-    .container { max-width: 900px; margin: 0 auto; }
+  header {
+    text-align: center;
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+  header .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; }
 
-    /* ── Header ────────────────────────────────────────────────────────────── */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #1e293b;
-    }
-    .header-title { font-size: 22px; font-weight: 700; }
-    .header-sub { color: #94a3b8; font-size: 13px; margin-top: 2px; }
+  .status-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+  }
+  .status-pass    { background: var(--success); color: #052e16; }
+  .status-partial { background: var(--warning); color: #451a03; }
+  .status-failed  { background: var(--error);   color: #450a0a; }
 
-    /* ── Status badge ──────────────────────────────────────────────────────── */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-    .badge-pass    { background: #14532d; color: #22c55e; }
-    .badge-partial { background: #451a03; color: #f59e0b; }
-    .badge-failed  { background: #450a0a; color: #ef4444; }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .card .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .card .detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
 
-    /* ── Section headers ───────────────────────────────────────────────────── */
-    .section { margin-top: 28px; }
-    .section-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #64748b;
-      margin-bottom: 12px;
-    }
+  section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  section h2 .icon { font-size: 1.2rem; }
 
-    /* ── Stat cards ────────────────────────────────────────────────────────── */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-    }
-    .card {
-      background: #1e293b;
-      border-radius: 10px;
-      padding: 16px;
-      border: 1px solid #334155;
-    }
-    .card-label { font-size: 11px; color: #94a3b8; margin-bottom: 6px; }
-    .card-value { font-size: 28px; font-weight: 800; }
-    .card-sub   { font-size: 11px; color: #64748b; margin-top: 4px; }
-    .c-blue   { color: #3b82f6; }
-    .c-green  { color: #22c55e; }
-    .c-yellow { color: #f59e0b; }
-    .c-red    { color: #ef4444; }
-    .c-purple { color: #a78bfa; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--surface-raised);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  th:first-child { border-radius: 6px 0 0 6px; }
+  th:last-child  { border-radius: 0 6px 6px 0; }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
 
-    /* ── Table ─────────────────────────────────────────────────────────────── */
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; }
-    thead tr { background: #1e293b; }
-    th {
-      padding: 10px 12px;
-      text-align: left;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #94a3b8;
-      white-space: nowrap;
-    }
-    td { padding: 10px 12px; border-bottom: 1px solid #1e293b; font-size: 13px; }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #1e293b55; }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-    .pill-green  { background: #14532d44; color: #22c55e; }
-    .pill-red    { background: #450a0a44; color: #ef4444; }
-    .pill-yellow { background: #451a0344; color: #f59e0b; }
-    .pill-blue   { background: #1e3a5f44; color: #3b82f6; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .tag-invoiced { background: rgba(34,197,94,0.15); color: var(--success); }
+  .tag-gap      { background: rgba(239,68,68,0.15); color: var(--error); }
+  .tag-aplus    { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .tag-direct   { background: rgba(148,163,184,0.15); color: var(--text-muted); }
 
-    /* ── A+ block ──────────────────────────────────────────────────────────── */
-    .aplus-block {
-      background: #1a1040;
-      border: 1px solid #4c1d95;
-      border-radius: 10px;
-      padding: 16px 20px;
-    }
-    .aplus-title { font-size: 14px; font-weight: 700; color: #a78bfa; margin-bottom: 10px; }
-    .aplus-row { display: flex; gap: 24px; flex-wrap: wrap; }
-    .aplus-stat { }
-    .aplus-stat-label { font-size: 11px; color: #94a3b8; }
-    .aplus-stat-val   { font-size: 22px; font-weight: 800; color: #a78bfa; }
+  .danny-block {
+    background: linear-gradient(135deg, var(--accent-dim), var(--accent));
+    border: none;
+    color: #fff;
+  }
+  .danny-block h2 { color: #fff; }
+  .danny-block .label { color: rgba(255,255,255,0.7); }
+  .danny-block .value { color: #fff; }
 
-    /* ── Gap list ──────────────────────────────────────────────────────────── */
-    .gap-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 10px 14px;
-      background: #1e293b;
-      border-left: 3px solid #f59e0b;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 8px;
-    }
-    .gap-item-info { }
-    .gap-customer  { font-weight: 600; font-size: 14px; }
-    .gap-amount    { font-size: 12px; color: #94a3b8; }
-    .btn {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-yellow { background: #451a03; color: #f59e0b; }
-    .btn-blue   { background: #1e3a5f; color: #3b82f6; }
+  .gap-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .gap-item:last-child { border-bottom: none; }
+  .gap-item .info { flex: 1; }
+  .gap-item .amount { font-weight: 700; color: var(--error); margin: 0 16px; }
 
-    /* ── Open project items ────────────────────────────────────────────────── */
-    .project-item {
-      display: flex;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px solid #1e293b;
-    }
-    .project-item:last-child { border-bottom: none; }
-    .project-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #3b82f6;
-      flex-shrink: 0;
-      margin-top: 6px;
-    }
-    .project-text  { font-size: 13px; }
-    .project-source { font-size: 11px; color: #64748b; }
+  .btn-draft {
+    background: var(--surface-raised);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-draft:hover { background: var(--accent); border-color: var(--accent); }
 
-    /* ── Tomorrow preview ──────────────────────────────────────────────────── */
-    .tomorrow-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 8px 12px;
-      background: #1e293b;
-      border-radius: 8px;
-      margin-bottom: 8px;
-    }
-    .tomorrow-time {
-      font-size: 12px;
-      color: #94a3b8;
-      min-width: 50px;
-      margin-top: 2px;
-    }
-    .tomorrow-name { font-weight: 600; font-size: 13px; }
-    .tomorrow-loc  { font-size: 12px; color: #64748b; }
+  .preview-item {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .preview-item:last-child { border-bottom: none; }
+  .preview-time {
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 80px;
+  }
 
-    /* ── Prep prompts ──────────────────────────────────────────────────────── */
-    .prompt-list { display: flex; flex-direction: column; gap: 8px; }
-    .prompt-item {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-family: monospace;
-      font-size: 13px;
-      color: #38bdf8;
-      cursor: pointer;
-    }
-    .prompt-item::before { content: '❯ '; color: #64748b; }
+  .prompt-list { list-style: none; }
+  .prompt-list li {
+    background: var(--surface-raised);
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .prompt-list li:hover { background: var(--accent-dim); }
+  .prompt-list li::before {
+    content: '▸ ';
+    color: var(--accent);
+    font-weight: 700;
+  }
 
-    /* ── Error block ───────────────────────────────────────────────────────── */
-    .error-block {
-      background: #1c0a0a;
-      border: 1px solid #7f1d1d;
-      border-radius: 10px;
-      padding: 14px 18px;
-      margin-bottom: 20px;
-    }
-    .error-title { font-size: 13px; font-weight: 700; color: #ef4444; margin-bottom: 8px; }
-    .error-item  { font-size: 12px; color: #fca5a5; margin-bottom: 4px; }
-    .error-item::before { content: '✖  '; }
+  .error-block {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .error-block h2 { color: var(--error); font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+  .error-block .error-item {
+    font-size: 0.82rem;
+    color: #fca5a5;
+    margin-bottom: 4px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .error-block .error-item::before { content: '✖'; position: absolute; left: 0; }
 
-    /* ── Footer ────────────────────────────────────────────────────────────── */
-    .footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid #1e293b;
-      font-size: 11px;
-      color: #475569;
-      text-align: center;
-    }
-  </style>
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .card-grid { grid-template-columns: 1fr 1fr; }
+    .card .value { font-size: 1.5rem; }
+  }
+</style>
 </head>
 <body>
-<div class="container">
 
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <div class="header-title">🌆 Evening Review</div>
-      <div class="header-sub">{{DATE_DISPLAY}} · NorCal CARB Mobile LLC · Generated {{RUN_TIME}}</div>
-    </div>
-    <span class="badge badge-{{STATUS_CLASS}}">{{STATUS_ICON}} {{STATUS_LABEL}}</span>
-  </div>
+<header>
+  <h1>NorCal CARB Mobile — Evening Review</h1>
+  <div class="subtitle">{{DAY_NAME}}, {{DATE}} &middot; Generated {{TIMESTAMP}}</div>
+  <div class="status-badge status-{{STATUS_CLASS}}">{{STATUS}}</div>
+</header>
 
-  <!-- Error block (shown only when MCP tools unavailable) -->
-  {{#if ERRORS}}
-  <div class="error-block">
-    <div class="error-title">Data Collection Errors — Live MCP Sources Unavailable</div>
-    {{ERRORS_HTML}}
-  </div>
-  {{/if}}
-
-  <!-- Job count cards -->
-  <div class="section">
-    <div class="section-title">Today's Jobs</div>
-    <div class="cards">
-      <div class="card">
-        <div class="card-label">Total Jobs</div>
-        <div class="card-value c-blue">{{JOBS_TOTAL}}</div>
-        <div class="card-sub">completed today</div>
-      </div>
-      <div class="card">
-        <div class="card-label">A+ (Danny)</div>
-        <div class="card-value c-purple">{{JOBS_APLUS}}</div>
-        <div class="card-sub">via A+ CTC</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Direct</div>
-        <div class="card-value c-green">{{JOBS_DIRECT}}</div>
-        <div class="card-sub">direct customers</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Invoice Gaps</div>
-        <div class="card-value c-yellow">{{INVOICE_GAPS}}</div>
-        <div class="card-sub">need before 9 PM</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Jobs table -->
-  <div class="section">
-    <div class="section-title">Job Detail</div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Customer</th>
-            <th>Location</th>
-            <th>Test</th>
-            <th>Trucks</th>
-            <th>Invoice</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{JOBS_ROWS_HTML}}
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Invoice / payment cards -->
-  <div class="section">
-    <div class="section-title">Invoices & Payments</div>
-    <div class="cards">
-      <div class="card">
-        <div class="card-label">Invoices Sent</div>
-        <div class="card-value c-green">{{INVOICES_SENT}}</div>
-        <div class="card-sub">~${{INVOICE_TOTAL}} total</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Payments Received</div>
-        <div class="card-value c-green">${{PAYMENTS_TOTAL}}</div>
-        <div class="card-sub">all sources</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Stripe</div>
-        <div class="card-value c-blue">${{STRIPE_TOTAL}}</div>
-        <div class="card-sub">processed today</div>
-      </div>
-      <div class="card">
-        <div class="card-label">Gap Estimate</div>
-        <div class="card-value c-yellow">${{GAP_TOTAL}}</div>
-        <div class="card-sub">uninvoiced</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Invoices sent detail -->
-  <div class="section">
-    <div class="section-title">Invoices Sent Today</div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Invoice / Subject</th>
-            <th>Recipient</th>
-            <th>Amount</th>
-            <th>Channel</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{INVOICES_ROWS_HTML}}
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- A+ Danny status -->
-  <div class="section">
-    <div class="section-title">A+ Danny Status</div>
-    <div class="aplus-block">
-      <div class="aplus-title">⚡ A+ CTC — Danny (danny@aplusctc.com)</div>
-      <div class="aplus-row">
-        <div class="aplus-stat">
-          <div class="aplus-stat-label">Jobs Done</div>
-          <div class="aplus-stat-val">{{DANNY_JOBS}}</div>
-        </div>
-        <div class="aplus-stat">
-          <div class="aplus-stat-label">Invoiced to Danny</div>
-          <div class="aplus-stat-val">{{DANNY_INVOICED}}</div>
-        </div>
-        <div class="aplus-stat">
-          <div class="aplus-stat-label">Danny Owes</div>
-          <div class="aplus-stat-val">${{DANNY_OWED}}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Invoice gaps -->
-  <div class="section">
-    <div class="section-title">Invoice Gaps — Send Before 9 PM Cron</div>
-    {{GAPS_HTML}}
-  </div>
-
-  <!-- Open project items from sessions -->
-  <div class="section">
-    <div class="section-title">Open Project Items (from Today's Chats)</div>
-    <div>{{OPEN_PROJECTS_HTML}}</div>
-  </div>
-
-  <!-- Tomorrow preview -->
-  <div class="section">
-    <div class="section-title">Tomorrow's Preview ({{TOMORROW_DATE}})</div>
-    {{TOMORROW_JOBS_HTML}}
-  </div>
-
-  <!-- Prep prompts -->
-  <div class="section">
-    <div class="section-title">Tomorrow's Prep Prompts — Paste Any into Claude</div>
-    <div class="prompt-list">
-      <div class="prompt-item">Generate Danny catch-up email for this week</div>
-      <div class="prompt-item">Run VIN compliance check on tomorrow's jobs</div>
-      <div class="prompt-item">Pull yesterday's Stripe invoices for reconciliation</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    NorCal CARB Mobile LLC · evening-project-review-7pm · {{RUN_TIME}} UTC
-    · Companion: attention-hq-7am-digest | invoice-nightly-check
-  </div>
-
+<!-- {{#IF ERRORS}} -->
+<div class="error-block">
+  <h2>⚠ Data Collection Errors — Live MCP Sources Unavailable</h2>
+  <!-- {{#EACH ERROR}} -->
+  <div class="error-item">{{ERROR_MESSAGE}}</div>
+  <!-- {{/EACH}} -->
 </div>
+<!-- {{/IF}} -->
+
+<!-- ── Job Count Cards ── -->
+<div class="card-grid">
+  <div class="card">
+    <div class="label">Jobs Done</div>
+    <div class="value">{{JOBS_TOTAL}}</div>
+    <div class="detail">today</div>
+  </div>
+  <div class="card">
+    <div class="label">A+ Jobs</div>
+    <div class="value" style="color:var(--accent)">{{JOBS_APLUS}}</div>
+    <div class="detail">Danny's customers</div>
+  </div>
+  <div class="card">
+    <div class="label">Direct Jobs</div>
+    <div class="value">{{JOBS_DIRECT}}</div>
+    <div class="detail">own customers</div>
+  </div>
+  <div class="card">
+    <div class="label">Invoice Gaps</div>
+    <div class="value" style="color:var(--error)">{{INVOICE_GAPS}}</div>
+    <div class="detail">need attention</div>
+  </div>
+</div>
+
+<!-- ── Invoice / Payment Cards ── -->
+<div class="card-grid">
+  <div class="card">
+    <div class="label">Invoices Sent</div>
+    <div class="value" style="color:var(--success)">{{INVOICES_SENT}}</div>
+    <div class="detail">~${{INVOICE_TOTAL}} total</div>
+  </div>
+  <div class="card">
+    <div class="label">Stripe Received</div>
+    <div class="value" style="color:var(--success)">${{STRIPE_TOTAL}}</div>
+  </div>
+  <div class="card">
+    <div class="label">PayPal Received</div>
+    <div class="value">${{PAYPAL_TOTAL}}</div>
+  </div>
+  <div class="card">
+    <div class="label">Total Received</div>
+    <div class="value" style="color:var(--success)">${{PAYMENTS_TOTAL}}</div>
+  </div>
+</div>
+
+<!-- ── Jobs Table ── -->
+<section>
+  <h2><span class="icon">🚛</span> Jobs Completed Today</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Location</th>
+        <th>Test</th>
+        <th>Type</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {{#EACH JOB}} -->
+      <tr>
+        <td>{{CUSTOMER}}</td>
+        <td>{{LOCATION}}</td>
+        <td>{{TEST_TYPE}}</td>
+        <td><span class="tag tag-{{JOB_TYPE_CLASS}}">{{JOB_TYPE}}</span></td>
+        <td><span class="tag tag-{{INV_STATUS_CLASS}}">{{INVOICE_STATUS}}</span></td>
+      </tr>
+      <!-- {{/EACH}} -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ── Invoices Sent Today ── -->
+<section>
+  <h2><span class="icon">🧾</span> Invoices Sent Today</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Invoice / Subject</th>
+        <th>Recipient</th>
+        <th>Amount</th>
+        <th>Channel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {{#EACH INVOICE}} -->
+      <tr>
+        <td>{{SUBJECT}}</td>
+        <td>{{RECIPIENT}}</td>
+        <td>${{AMOUNT}}</td>
+        <td>{{CHANNEL}}</td>
+      </tr>
+      <!-- {{/EACH}} -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ── A+ Danny Status ── -->
+<section class="danny-block">
+  <h2><span class="icon">⭐</span> A+ Danny Status</h2>
+  <div class="card-grid" style="margin-bottom:0">
+    <div class="card" style="background:rgba(255,255,255,0.1);border:none">
+      <div class="label">Jobs Done</div>
+      <div class="value">{{APLUS_JOBS_DONE}}</div>
+    </div>
+    <div class="card" style="background:rgba(255,255,255,0.1);border:none">
+      <div class="label">Invoiced</div>
+      <div class="value">{{APLUS_INVOICED}}</div>
+    </div>
+    <div class="card" style="background:rgba(255,255,255,0.1);border:none">
+      <div class="label">Owed</div>
+      <div class="value">${{DANNY_OWED}}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Invoice Gaps ── -->
+<section>
+  <h2><span class="icon">🚨</span> Invoice Gaps</h2>
+  <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:12px">
+    Send before bed or the 9 PM cron will flag these.
+  </p>
+  <!-- {{#EACH GAP}} -->
+  <div class="gap-item">
+    <div class="info">{{CUSTOMER}}</div>
+    <div class="amount">~${{AMOUNT}}</div>
+    <a class="btn-draft" href="{{DRAFT_LINK}}">Open Draft</a>
+  </div>
+  <!-- {{/EACH}} -->
+  <!-- {{#IF NO_GAPS}} -->
+  <p style="color:var(--success);font-size:0.9rem">All jobs invoiced today.</p>
+  <!-- {{/IF}} -->
+</section>
+
+<!-- ── Open Projects ── -->
+<section>
+  <h2><span class="icon">📂</span> Open Projects from Today's Chats</h2>
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      <!-- {{#EACH OPEN_PROJECT}} -->
+      <tr>
+        <td>{{DESCRIPTION}}</td>
+        <td style="color:var(--text-muted)">{{SESSION_SOURCE}}</td>
+      </tr>
+      <!-- {{/EACH}} -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ── Tomorrow Preview ── -->
+<section>
+  <h2><span class="icon">📅</span> Tomorrow's Preview</h2>
+  <!-- {{#EACH TOMORROW_JOB}} -->
+  <div class="preview-item">
+    <div class="preview-time">{{TIME}}</div>
+    <div>{{CUSTOMER}} @ {{LOCATION}}</div>
+  </div>
+  <!-- {{/EACH}} -->
+</section>
+
+<!-- ── Prep Prompts ── -->
+<section>
+  <h2><span class="icon">⚡</span> Tomorrow's Prep Prompts</h2>
+  <p style="color:var(--text-muted);font-size:0.82rem;margin-bottom:10px">
+    Copy and paste any of these into your next session:
+  </p>
+  <ul class="prompt-list">
+    <li>
+      Generate Danny catch-up email for this week
+    </li>
+    <li>
+      Run VIN compliance check on tomorrow's jobs
+    </li>
+    <li>
+      Pull yesterday's Stripe invoices for reconciliation
+    </li>
+  </ul>
+</section>
+
+<footer>
+  NorCal CARB Mobile LLC &middot; evening-project-review-7pm agent &middot; {{TIMESTAMP}}
+</footer>
+
 </body>
 </html>

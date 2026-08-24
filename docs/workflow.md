@@ -1,178 +1,244 @@
-# Bryan's Workflow
+# Gillis Main Workflow
 
-This document describes Bryan's complete operational workflow — from morning
-startup through end-of-day wrap-up, weekly reviews, and project management
-cycles.
+This is the operating rhythm for Bryan, Samantha, and any AI assistant helping
+with the business. The point is not to be fancy. The point is to capture work,
+finish the right things, and avoid losing important follow-ups.
+
+## Operating principles
+
+1. **Capture first, organize second.** If Bryan says a task while driving, get it
+   written down immediately.
+2. **Use tap choices when unclear.** Samantha should offer 2-4 direct options
+   instead of asking open-ended questions when Bryan is busy.
+3. **Protect the 17-week rule.** Every completed HD I/M test needs a retest
+   reminder scheduled 17 weeks later unless Bryan says otherwise.
+4. **Keep repos separated.** This repo is the handbook. App code belongs in the
+   app repo.
+5. **No secrets in git.** Credentials live in the proper cloud or local secret
+   store, never in Markdown.
 
 ---
 
-## 1. Daily Startup Routine
+## 1. Morning startup
 
-**Goal:** Orient quickly and set priorities for the day.
+**Goal:** Know what matters today before the day starts running you.
 
-### Steps
-
-1. **Open task manager / to-do list**
-   - Review any items carried over from the previous day.
-   - Mark any newly completed items.
-
-2. **Check communications**
-   - Scan email inbox — action, delegate, or archive each item.
-   - Review chat/messaging apps (Slack, Teams, etc.).
-   - Flag items that need a response within the day.
-
-3. **Review calendar**
-   - Confirm all meetings for the day.
-   - Block focus time around meetings.
-
-4. **Set the day's top 3 priorities**
-   - Write them in the [daily log](../templates/daily-log.md).
-   - Post them somewhere visible (sticky note, second monitor, etc.).
-
-5. **Run daily-start script**
+1. Run the safe startup check:
    ```bash
    bash scripts/daily-start.sh
    ```
-   The script checks for pending git branches, outstanding PRs, and system
-   health (disk space, backups).
+2. Review yesterday's carry-overs.
+3. Check the calendar for tests, calls, deadlines, and family commitments.
+4. Check messages that can change today's plan.
+5. Pick the **Top 3**:
+   - one must-do customer/business item,
+   - one follow-up/admin item,
+   - one build/improvement item if there is capacity.
+6. Put the Top 3 in today's daily log.
+
+Daily logs are generated under `logs/daily/` and are gitignored so private
+working notes do not get pushed by accident.
 
 ---
 
-## 2. Project Task Management Cycle
+## 2. While driving or working
 
-**Cadence:** Continuous throughout the day.
+**Goal:** Make Samantha useful without forcing Bryan to type.
+
+Use short commands:
+
+- "Samantha, add this to the chalkboard: call Mike about the invoice."
+- "Schedule a test for Tuesday at 9."
+- "Customer passed. Set the 17-week retest reminder."
+- "Find the DOT number for this company."
+- "Draft a reply saying I can do Thursday morning."
+
+Samantha should respond with one of these patterns:
+
+| Situation | Best response |
+|-----------|---------------|
+| Clear task | "Done." Then summarize the action. |
+| Needs a choice | "Pick one: A, B, or C." |
+| Risky or external action | "I can draft it. Confirm before I send." |
+| Missing critical info | Ask one short question. |
+
+---
+
+## 3. Customer test workflow
+
+**Goal:** Every test creates the right paperwork, schedule entry, and follow-up.
+
+1. Capture customer and vehicle details.
+2. Put the test on the calendar.
+3. Complete the test.
+4. Create or update the invoice.
+5. Record the result.
+6. If the test is complete, schedule the 17-week retest reminder.
+7. Add unresolved items to the chalkboard.
+
+Minimum fields to capture:
+
+- Customer / company name
+- Contact name and phone
+- Vehicle or unit number
+- VIN if available
+- Test date
+- Result
+- Invoice status
+- Retest reminder date
+
+---
+
+## 4. Project workflow
+
+**Goal:** Make progress without mixing experiments, docs, and production code.
+
+### Use this repo when the work is:
+
+- a process note,
+- a template,
+- a script for daily workflow,
+- a roadmap or project brief.
+
+### Use another repo when the work is:
+
+- production app code,
+- website code,
+- a customer-specific system,
+- a serious experiment that needs its own history.
+
+For new local planning work:
+
+```bash
+bash scripts/new-project.sh "Project Name"
+```
+
+This creates a gitignored folder under `projects/` so you can think without
+accidentally committing private drafts.
+
+### Code branch habit
+
+```bash
+git checkout -b docs/clear-description
+git status -sb
+git add -p
+git commit -m "docs: clear description"
+git push -u origin docs/clear-description
+```
+
+For Cursor Cloud work, follow the branch naming requested by the cloud task.
+
+---
+
+## 4b. Evening Project Review (7 PM)
+
+**Goal:** Bridge field work and the 9 PM invoice-nightly-check cron. Audit
+completed jobs, invoices, payments, and open project items before the end of
+Bryan's working day.
+
+**Cadence:** Daily, ~7 PM (Bryan is off the road by ~6 PM, voice-texting by 7 PM).
+
+**Companion agents:**
+- `attention-hq-7am-digest` (morning)
+- `invoice-nightly-check` (9 PM cron)
 
 ### Steps
 
-1. **Pick the next task** from the prioritized backlog.
-2. **Create or reuse a feature branch** (for code tasks):
-   ```bash
-   git checkout -b feature/<ticket-id>-short-description
-   ```
-3. **Work the task** using the relevant key operations (see
-   [key-operations.md](key-operations.md)).
-4. **Commit frequently** with clear messages:
-   ```bash
-   git add -p          # stage hunks interactively
-   git commit -m "type(scope): short imperative description"
-   ```
-5. **Open a pull request** when the task is complete and tests pass.
-6. **Update the task tracker** — move the card to "In Review" or "Done".
+1. **Pull today's completed jobs** from both Google Calendars.
+2. **Pull today's sent invoices** from Gmail (sent folder search for invoice
+   keywords, Danny-specific sends, and PayPal/Squarespace).
+3. **Pull Stripe activity** — invoices and payment intents created today.
+4. **Identify open project items** from today's Cursor chat sessions
+   (decisions pending, promises made, half-built work, unfollowed leads).
+5. **Pull tomorrow's calendar preview** (first 5 jobs).
+6. **Build the review summary** using the
+   [evening review template](../templates/evening-review.md).
+7. **Update today's 7 PM calendar event** description with the review output.
+8. **Write the HTML infographic** to OneDrive using the
+   [HTML template](../templates/evening-review.html).
+9. **Write the Samantha status JSON** to Google Drive using the
+   [JSON template](../templates/samantha-status-evening.json).
+10. **Draft any missing A+ invoices** to Danny — as Gmail drafts only, never
+    sent automatically.
 
-### Commit Message Convention
+Full agent skill: [skills/evening-project-review-7pm.md](../skills/evening-project-review-7pm.md)
 
-```
-<type>(<scope>): <short summary>
+### A+ Customer Rules
 
-[optional body]
-
-[optional footer — issue refs, breaking changes]
-```
-
-| Type | When to use |
-|------|------------|
-| `feat` | New feature |
-| `fix` | Bug fix |
-| `docs` | Documentation only |
-| `chore` | Build / tooling / dependency updates |
-| `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `test` | Adding or correcting tests |
+Jobs belonging to these customers are routed through Danny at A+ CTC:
+BJ Trucking, Bay City Metals, Dallinger, Granite Bay Bonnie, Box Pacific,
+Big Box Stockton, Overhead Door Stockton (or any job booked by
+`admin@mobilecarbsmoketest.com`).
 
 ---
 
-## 3. Communication Cadences
+## 5. End-of-day wrap-up
 
-| Channel | Frequency | Action |
-|---------|-----------|--------|
-| Email | 3× / day (morning, noon, EOD) | Triage inbox to zero |
-| Slack / Teams | Continuous (during focus hours: check every 30 min) | Reply or snooze |
-| Standup | Daily (async or live) | Post yesterday / today / blockers |
-| 1-on-1s | Weekly | Prepare agenda 1 day in advance |
-| Team sync | Weekly | Review sprint board; update tickets |
+**Goal:** Leave tomorrow a clean starting point.
 
----
-
-## 4. End-of-Day Wrap-Up
-
-**Goal:** Close the day cleanly and set up tomorrow for success.
-
-### Steps
-
-1. **Complete or defer open tasks**
-   - Any task not finished → move to tomorrow's list with a note on status.
-
-2. **Commit & push all work-in-progress**
-   ```bash
-   git add .
-   git commit -m "wip: end-of-day checkpoint"
-   git push
-   ```
-
-3. **Update the daily log**
-   - Fill in accomplishments, blockers, and notes using
-     [templates/daily-log.md](../templates/daily-log.md).
-
-4. **Clear inbox / notifications**
-   - Respond to anything that takes < 2 minutes.
-   - Defer everything else with a clear due date.
-
-5. **Run daily-end script**
+1. Move unfinished work to tomorrow with a note.
+2. Fill out today's daily log:
+   - wins,
+   - customer follow-ups,
+   - blockers,
+   - tomorrow's carry-overs.
+3. If you intentionally want the script to commit and push, run:
    ```bash
    bash scripts/daily-end.sh
    ```
-   The script commits the daily log, checks backup status, and prints
-   tomorrow's calendar preview.
+4. Check that any customer action with a date is on the calendar.
+5. Close unused tabs and apps.
 
-6. **Shut down cleanly**
-   - Close all browser tabs not needed tomorrow.
-   - Close all editor windows.
-   - Lock workstation.
+Important: `daily-end.sh` commits and pushes. Do not run it as a harmless test.
 
 ---
 
-## 5. Weekly Review Loop
+## 6. Weekly review
 
-**Cadence:** Every Friday (or last workday of the week).
+**Goal:** Turn the week into a short, useful summary and a better next week.
 
-### Steps
-
-1. **Review all open projects** — update status for each.
-2. **Process the task backlog** — groom, estimate, and prioritize next week.
-3. **Generate weekly summary**
+1. Review daily logs.
+2. Review open customer follow-ups.
+3. Check whether every completed test has its retest reminder.
+4. Review active projects and decide:
+   - continue,
+   - pause,
+   - finish,
+   - delete.
+5. Generate the weekly summary only when you are ready for it to commit:
    ```bash
    bash scripts/weekly-review.sh
    ```
-4. **Fill in the weekly summary template**
-   ([templates/weekly-summary.md](../templates/weekly-summary.md)).
-5. **Send the summary** to relevant stakeholders.
-6. **Plan next week** — set Monday's top 3 priorities.
+6. Pick next week's Top 3 outcomes.
+
+Important: `weekly-review.sh` writes under `logs/weekly/`, commits, and pushes.
 
 ---
 
-## 6. Monthly Review Loop
+## 7. Monthly cleanup
 
-**Cadence:** Last working day of each month.
+**Goal:** Keep the system from turning into another messy pile.
 
-### Steps
-
-1. **Audit all active projects** — are they on track, at risk, or blocked?
-2. **Review key metrics** — velocity, defect rate, communication health.
-3. **Archive completed projects** per the archival procedure.
-4. **Update documentation** — ensure this repo reflects current practice.
-5. **1-on-1 with manager / key stakeholder** to align on priorities for the
-   coming month.
+1. Archive or delete stale drafts.
+2. Check active repos and make sure each has a clear purpose.
+3. Update this handbook if the real workflow changed.
+4. Review Samantha's missing abilities and add them to the roadmap.
+5. Check credential hygiene: no keys in repos, old tokens rotated, access still
+   limited to what is needed.
 
 ---
 
-## 7. New Project Kickoff
+## 8. When an AI assistant takes over
 
-1. **Create project scaffold**:
+The assistant should:
+
+1. Read `README.md`, `Claude.md`, and this workflow.
+2. Run:
    ```bash
-   bash scripts/new-project.sh "<Project Name>"
+   git status -sb
+   bash -n scripts/*.sh
    ```
-2. **Fill in the project brief**: [templates/project-brief.md](../templates/project-brief.md).
-3. **Set up repository** (if code project):
-   - Initialize git, add `.gitignore`, push to remote.
-   - Configure branch protections and CI.
-4. **Brief stakeholders** — share the project brief and agree on scope.
-5. **Add project to task tracker** and create initial backlog.
+3. Avoid mutating scripts unless that is the assignment.
+4. If the request is really app work for Samantha, use
+   `docs/samantha-app-roadmap.md` and the app repo instead of stuffing app code
+   into this handbook.
