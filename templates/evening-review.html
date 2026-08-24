@@ -197,6 +197,23 @@
     font-weight: 700;
   }
 
+  .error-block {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .error-block h2 { color: var(--error); font-size: 0.95rem; font-weight: 700; margin-bottom: 10px; }
+  .error-block .error-item {
+    font-size: 0.82rem;
+    color: #fca5a5;
+    margin-bottom: 4px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .error-block .error-item::before { content: '✖'; position: absolute; left: 0; }
+
   footer {
     text-align: center;
     color: var(--text-muted);
@@ -220,6 +237,15 @@
   <div class="subtitle">{{DAY_NAME}}, {{DATE}} &middot; Generated {{TIMESTAMP}}</div>
   <div class="status-badge status-{{STATUS_CLASS}}">{{STATUS}}</div>
 </header>
+
+<!-- {{#IF ERRORS}} -->
+<div class="error-block">
+  <h2>⚠ Data Collection Errors — Live MCP Sources Unavailable</h2>
+  <!-- {{#EACH ERROR}} -->
+  <div class="error-item">{{ERROR_MESSAGE}}</div>
+  <!-- {{/EACH}} -->
+</div>
+<!-- {{/IF}} -->
 
 <!-- ── Job Count Cards ── -->
 <div class="card-grid">
@@ -287,6 +313,31 @@
         <td>{{TEST_TYPE}}</td>
         <td><span class="tag tag-{{JOB_TYPE_CLASS}}">{{JOB_TYPE}}</span></td>
         <td><span class="tag tag-{{INV_STATUS_CLASS}}">{{INVOICE_STATUS}}</span></td>
+      </tr>
+      <!-- {{/EACH}} -->
+    </tbody>
+  </table>
+</section>
+
+<!-- ── Invoices Sent Today ── -->
+<section>
+  <h2><span class="icon">🧾</span> Invoices Sent Today</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Invoice / Subject</th>
+        <th>Recipient</th>
+        <th>Amount</th>
+        <th>Channel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {{#EACH INVOICE}} -->
+      <tr>
+        <td>{{SUBJECT}}</td>
+        <td>{{RECIPIENT}}</td>
+        <td>${{AMOUNT}}</td>
+        <td>{{CHANNEL}}</td>
       </tr>
       <!-- {{/EACH}} -->
     </tbody>
